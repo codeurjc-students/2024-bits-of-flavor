@@ -29,24 +29,24 @@ GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
 ### Listado de funcionalidades de la Aplicación Web
 
 #### Usuario anónimo
-  ⋅⋅1. Visualizar el listado de productos. (BÁSICA)
-  ⋅⋅2. Filtrar el listado de productos. (BÁSICA)
-  ⋅⋅3. Visualizar página con los detalles de un producto específico. (BÁSICA)
-  ⋅⋅4. Registrarse. (BÁSICA)
-  ⋅⋅5. Iniciar sesión. (BÁSICA)
-  ⋅⋅6. Visualizar gráfico con estadísticas de productos. (AVANZADA)
+  1. Visualizar el listado de productos. (BÁSICA)
+  2. Filtrar el listado de productos. (BÁSICA)
+  3. Visualizar página con los detalles de un producto específico. (BÁSICA)
+  4. Registrarse. (BÁSICA)
+  5. Iniciar sesión. (BÁSICA)
+  6. Visualizar gráfico con estadísticas de productos. (AVANZADA)
 
 #### Usuario registrado
-  ⋅⋅7. Añádir productos al carrito de compra. (BÁSICA)
-  ⋅⋅8. Seleccionar fecha de recogida de productos. (BÁSICA)
-  ⋅⋅9. Modificar perfil de usuario. (BÁSICA)
-  ⋅⋅10. Descargar ticket PDF con los detalles de compra. (AVANZADA)
-  ⋅⋅11. Simulación de pasarela de pago real con Stipe. (AVANZADA)
+  7. Añádir productos al carrito de compra. (BÁSICA)
+  8. Seleccionar fecha de recogida de productos. (BÁSICA)
+  9. Modificar perfil de usuario. (BÁSICA)
+  10. Descargar ticket PDF con los detalles de compra. (AVANZADA)
+  11. Simulación de pasarela de pago real con Stipe. (AVANZADA)
 
 #### Usuario administrador
-  ⋅⋅12. Crear y añadir nuevos productos a la app. (BÁSICA)
-  ⋅⋅13. Eliminar productos ya existentes. (BÁSICA)
-  ⋅⋅14. Sistema de gestión de ofertas. (AVANZADA)
+  12. Crear y añadir nuevos productos a la app. (BÁSICA)
+  13. Eliminar productos ya existentes. (BÁSICA)
+  14. Sistema de gestión de ofertas. (AVANZADA)
 
 ### Wireframe de pantallas y navegación
 
