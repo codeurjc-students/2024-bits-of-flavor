@@ -51,24 +51,31 @@ GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
 ### Wireframe de pantallas y navegación
 
 1. Página de inicio:
+
 ![image](https://github.com/user-attachments/assets/f292a62f-5038-42a2-b738-f4e07a945a51)
 
 2. Página de Iniciar Sesión | Registrarse
+
 ![image](https://github.com/user-attachments/assets/8132e969-3bb6-4a69-9bea-9a8b84a7f4a5)
 ![image](https://github.com/user-attachments/assets/0e5428f2-f6ec-473a-98ef-4e71d0ebd0a3)
 
 
 3. Página de búsqueda con filtro:
+
 ![image](https://github.com/user-attachments/assets/9f0961ce-e2f0-4da8-815b-047bb962ce68)
 
 4. Página de detalles de producto:
+
 ![image](https://github.com/user-attachments/assets/4422a673-0c67-40e4-beb1-f08d69f09445)
 
 5. Página de perfil de usuario:
+
 ![image](https://github.com/user-attachments/assets/52c92b34-b5d3-42c5-9244-d919b968d0cc)
 
 6. Página de resumen de compra y proceso de pago:
+
 ![image](https://github.com/user-attachments/assets/bb67b56a-5e6b-45fe-bbbd-4d8abd53cc2a)
 
 7. Página de administrador para añadir un nuevo producto:
+
 ![image](https://github.com/user-attachments/assets/2e075264-516a-4c0a-b732-dd62b2c37b5c)
