@@ -6,10 +6,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './components/home/home.component';
 import { routing } from './app.routing';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
  declarations: [AppComponent, HeaderComponent, SearchComponent, HomeComponent],
- imports: [BrowserModule, FormsModule, routing],
+ imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })
 
