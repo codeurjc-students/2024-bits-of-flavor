@@ -1,5 +1,6 @@
 package es.codeurjc.bof.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,7 +13,10 @@ public class Product {
 	private Long id;
 
     private String name;
+
+    @Column(columnDefinition = "TEXT")
     private String info;
+    
     private float weight;
     private float price;
 
@@ -23,15 +27,15 @@ public class Product {
 
     public Product() { }
 
-    public Product(String name, String info, float weight, float price, float cal, float protein, float fat, float carbo) {
+    public Product(String name, String info, float weight, float price, float cal, float protein, float carbo, float fat) {
         this.name = name;
         this.info = info;
         this.weight = weight;
         this.price = price;
         this.cal = cal;
         this.protein = protein;
-        this.fat = fat;
         this.carbo = carbo;
+        this.fat = fat;
     }
 
     public Long getId() {
