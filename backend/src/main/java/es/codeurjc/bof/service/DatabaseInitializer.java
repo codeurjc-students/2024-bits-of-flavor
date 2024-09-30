@@ -21,12 +21,12 @@ public class DatabaseInitializer {
         //Sample Products
         Product product1 = new Product(
         "Carrillera de cerdo en salsa Pedro Ximénez",
-        "Carrillera de cerdo, salsa PX (jugo de carne, vino pedro ximenez, cebolla, sal, pimienta, almidón de maíz), patata, boniato, zanahoria, hierbas provenzales, judía plana, zanahoria, cebolla, pasta de ajo, aceite de oliva, sal, pimienta.", +
-        0, 8.15f, 558, 41, 30, 27);
+        "Carrillera de cerdo, salsa PX (jugo de carne, vino pedro ximenez, cebolla, sal, pimienta, almidón de maíz), patata, boniato, zanahoria, hierbas provenzales, judía plana, zanahoria, cebolla, pasta de ajo, aceite de oliva, sal, pimienta.",
+        450, 8.15f, 558, 41, 30, 27);
         productRepository.save(product1);
 
         Product product2 = new Product("Salmón con salsa al cava",
-        "Salmón, salsa de cava (cava, caldo de pescado, nata, cebolla, tomate frito casero, aceite de oliva, almidón de maíz), tomate, boniato, ajo, queso parmesano, pan rallado, ajo, perejil, vinagre, aceite de oliva virgen, sal, pimienta, especias cajún.", +
+        "Salmón, salsa de cava (cava, caldo de pescado, nata, cebolla, tomate frito casero, aceite de oliva, almidón de maíz), tomate, boniato, ajo, queso parmesano, pan rallado, ajo, perejil, vinagre, aceite de oliva virgen, sal, pimienta, especias cajún.",
         450, 8.95f, 477, 35, 30, 22);
         productRepository.save(product2);
 
