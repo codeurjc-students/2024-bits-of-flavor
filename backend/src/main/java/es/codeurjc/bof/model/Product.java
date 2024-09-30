@@ -1,10 +1,15 @@
 package es.codeurjc.bof.model;
 
+import java.sql.Blob;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Product {
@@ -24,6 +29,10 @@ public class Product {
     private float protein;
     private float fat;
     private float carbo;
+
+    @Lob
+    @JsonIgnore
+    private Blob imageFile;
 
     public Product() { }
 
@@ -91,5 +100,13 @@ public class Product {
     }
     public void setCarbo(float carbo) {
         this.carbo = carbo;
-    }    
+    }
+
+    public Blob getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(Blob imageFile) {
+        this.imageFile = imageFile;
+    }
 }
