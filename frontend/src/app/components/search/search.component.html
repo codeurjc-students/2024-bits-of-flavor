@@ -3,10 +3,12 @@
         <ul>
             <li *ngFor = "let product of products">
                 <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
-                <a routerLink ="/product/{{product.id}}"> <h2 class = "product-name"> {{product.name}} </h2> </a> 
-                <p class = "product-price"> {{product.price}}</p>
-                <button class="add-button"> Añadir </button>
-                <button class="delete-button"> Borrar </button>
+                <a routerLink ="/product/{{product.id}}"> <h2 class = "product-name"> {{product.name}} </h2> </a>
+                <div class="button-container">
+                    <h2 class = "product-price"> {{product.price}} € </h2>
+                    <button class="add-button"> Añadir </button>
+                    <button class="delete-button"> Borrar </button>
+                </div>
             </li>
         </ul>
     </main>

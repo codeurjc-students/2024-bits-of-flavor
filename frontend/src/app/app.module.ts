@@ -8,9 +8,15 @@ import { HomeComponent } from './components/home/home.component';
 import { routing } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
- declarations: [AppComponent, HeaderComponent, SearchComponent, HomeComponent, ProductComponent],
+ declarations: [AppComponent,
+    HeaderComponent,
+    SearchComponent,
+    HomeComponent,
+    ProductComponent,
+    LoginComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

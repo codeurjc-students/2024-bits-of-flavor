@@ -16,8 +16,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String name;
-
+	private String username;
+	private String email;
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -26,18 +26,27 @@ public class User {
 	public User() {
 	}
 
-	public User(String name, String encodedPassword, String... roles) {
-		this.name = name;
+	public User(String username, String email, String encodedPassword, String... roles) {
+		this.username = username;
+		this.email = email;
 		this.encodedPassword = encodedPassword;
 		this.roles = List.of(roles);
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getEncodedPassword() {
@@ -55,5 +64,4 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-
 }
