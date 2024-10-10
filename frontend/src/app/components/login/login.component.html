@@ -1,7 +1,8 @@
 <div class="login-container">
-    <form (ngSubmit) = "submitLoginForm()">
-        <input [(ngModel)] = "username" type = "text" placeholder="Username" required>
-        <input [(ngModel)] = "password" type="password" placeholder="Password" required>
-        <button type="submit"> Login </button>
-    </form>
+    <div>
+        <input [(ngModel)] = "user.username" type = "text" placeholder="Username" required>
+        <input [(ngModel)] = "user.encodedPassword" type="password" placeholder="Password" required>
+        <button (click)="submitLoginForm()"> Login </button>
+    </div>
+    <p> {{user.username}}, {{user.encodedPassword}} {{user.email}}</p>
 </div>

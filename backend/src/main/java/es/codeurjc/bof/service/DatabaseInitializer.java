@@ -9,7 +9,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import es.codeurjc.bof.model.Product;
+import es.codeurjc.bof.model.User;
 import es.codeurjc.bof.repository.ProductRepository;
+import es.codeurjc.bof.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 
 @Service
@@ -17,6 +19,9 @@ public class DatabaseInitializer {
     
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostConstruct
     public void init() throws IOException {
@@ -83,6 +88,11 @@ public class DatabaseInitializer {
         productRepository.save(product10);
 
         //User sample
+        User user = new User("user", "user@gmail.com", "pass", "USER");
+        userRepository.save(user);
+
+        User admin = new User("admin", "admin@gmail.com", "pass", "ADMIN");
+        userRepository.save(admin);
     }
 
     public void setProductImage(Product product, String path) throws IOException{

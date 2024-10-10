@@ -3,15 +3,15 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { User } from "../model/user.model";
 
-const API_URL = "/api/user/"
+const API_URL = "/api/"
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UserService {
-    login (username: string, password: string) {
-        this.httpClient.post(API_URL + "/login", {"username": username, "password": password});
+    login (user: User): Observable<User> {
+        return this.httpClient.post(API_URL + "login", user) as Observable<User>;
     }
 
     constructor(private httpClient: HttpClient){}
