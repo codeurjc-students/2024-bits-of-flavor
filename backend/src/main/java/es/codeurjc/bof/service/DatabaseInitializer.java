@@ -6,6 +6,7 @@ import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.codeurjc.bof.model.Product;
@@ -22,6 +23,9 @@ public class DatabaseInitializer {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @PostConstruct
     public void init() throws IOException {
@@ -88,7 +92,7 @@ public class DatabaseInitializer {
         productRepository.save(product10);
 
         //User sample
-        User user = new User("user", "user@gmail.com", "pass", "USER");
+        User user = new User("user", "user@gmail.com", passwordEncoder.encode("pass"), "USER");
         userRepository.save(user);
 
         User admin = new User("admin", "admin@gmail.com", "pass", "ADMIN");

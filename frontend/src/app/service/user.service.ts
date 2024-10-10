@@ -11,7 +11,7 @@ const API_URL = "/api/"
 
 export class UserService {
     login (user: User): Observable<User> {
-        return this.httpClient.post(API_URL + "login", user) as Observable<User>;
+        return this.httpClient.post(API_URL + "login", { "username": user.username, "password": user.encodedPassword }, { withCredentials: true }) as Observable<User>;
     }
 
     constructor(private httpClient: HttpClient){}
