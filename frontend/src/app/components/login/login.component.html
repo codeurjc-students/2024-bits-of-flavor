@@ -1,8 +1,11 @@
 <div class="login-container">
-    <div>
-        <input [(ngModel)] = "user.username" type = "text" placeholder="Username" required>
-        <input [(ngModel)] = "user.encodedPassword" type="password" placeholder="Password" required>
-        <button (click)="submitLoginForm()"> Login </button>
-    </div>
-    <p> {{user.username}}, {{user.encodedPassword}} {{user.email}}</p>
+    <main>
+        <h1> Iniciar Sesión </h1>
+        <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required>
+        <input [(ngModel)] = "user.password" type = "password" placeholder="Contraseña" required>
+        <div class="button-container">
+            <button class = "sign-button"(click)="submitLoginForm()"> Registrarse</button>
+            <button class = "login-button" (click)="submitLoginForm()"> Iniciar Sesión </button>
+        </div>
+    </main>
 </div>

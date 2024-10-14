@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { UserService } from "../../service/user.service";
 import { User } from "../../model/user.model";
+import { LoginService } from "../../service/login.service";
 
 @Component({
     selector: 'app-login',
@@ -9,13 +9,11 @@ import { User } from "../../model/user.model";
   })
 
   export class LoginComponent {
-    public user: User = new User();
+    user: User = new User();
 
-    constructor(private userService: UserService){}
+    constructor(private loginService: LoginService){}
 
     public submitLoginForm(){
-      this.userService.login(this.user).subscribe(
-        (user: User) => this.user = user
-      );
+      this.loginService.logIn(this.user.username, this.user.password);
     }
   }
