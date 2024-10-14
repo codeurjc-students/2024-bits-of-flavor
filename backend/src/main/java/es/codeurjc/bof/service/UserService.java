@@ -22,4 +22,13 @@ public class UserService {
             return null;
         }
     }
+
+    public User getUserByUsername(String username){
+        Optional<User> user = userRepository.getUserByUsername(username);
+        if (user.isPresent()){
+            return user.get();
+        } else {
+            return null;
+        }
+    }
 }
