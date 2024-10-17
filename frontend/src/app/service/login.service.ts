@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 const BASE_URL = '/api';
 
@@ -66,7 +67,7 @@ export class LoginService {
         return this.user && this.user.roles.indexOf('ADMIN') !== -1;
     }
 */
-    currentUser() {
-        return this.user;
+    getCurrentUser(): Observable<User> {
+        return this.http.get("api/user/me", { withCredentials: true}) as Observable<User>;
     }
 }

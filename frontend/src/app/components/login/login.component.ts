@@ -14,6 +14,6 @@ import { LoginService } from "../../service/login.service";
     constructor(private loginService: LoginService){}
 
     public submitLoginForm(){
-      this.loginService.logIn(this.user.username, this.user.password);
+      this.loginService.logIn(this.user.username, this.user.encodedPassword);
     }
   }

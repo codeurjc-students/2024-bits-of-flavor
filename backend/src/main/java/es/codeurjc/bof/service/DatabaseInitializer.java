@@ -92,15 +92,21 @@ public class DatabaseInitializer {
         productRepository.save(product10);
 
         //User sample
-        User user = new User("user", "user@gmail.com", passwordEncoder.encode("pass"), "USER");
+        User user = new User("user", "user@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER");
+        setUserImage(user, "static/images/avatar1.jpg");
         userRepository.save(user);
 
-        User admin = new User("admin", "admin@gmail.com", "pass", "ADMIN");
+        User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "ADMIN");
         userRepository.save(admin);
     }
 
     public void setProductImage(Product product, String path) throws IOException{
         Resource image = new ClassPathResource(path);
         product.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+    }
+
+    public void setUserImage(User user, String path) throws IOException {
+        Resource image = new ClassPathResource(path);
+        user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
     }
 }

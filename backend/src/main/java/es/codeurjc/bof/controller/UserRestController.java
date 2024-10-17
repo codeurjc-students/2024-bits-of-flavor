@@ -1,11 +1,19 @@
 package es.codeurjc.bof.controller;
 
 import java.security.Principal;
+import java.sql.SQLException;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,5 +42,39 @@ public class UserRestController {
         }
 
         return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User newUser) throws SQLException {
+        User dbUser = this.userService.getUser(id);
+
+        if (dbUser == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        newUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(), dbUser.getImageFile().length()));
+            
+        User updatedUser = this.userService.updateUser(id, newUser);
+
+        if (updatedUser == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return ResponseEntity.ok(updatedUser);
+        }
+    }
+
+    @GetMapping("/{id}/image")
+    public ResponseEntity<Object> getProductImg(@PathVariable long id) throws SQLException{
+        User user = userService.getUser(id);
+        
+        if (user.getImageFile() != null) {
+            Resource file = new InputStreamResource(user.getImageFile().getBinaryStream());
+            return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                .contentLength(user.getImageFile().length())
+                .body(file);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

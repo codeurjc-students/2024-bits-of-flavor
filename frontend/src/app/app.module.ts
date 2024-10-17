@@ -9,14 +9,16 @@ import { routing } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
  declarations: [AppComponent,
-    HeaderComponent,
-    SearchComponent,
-    HomeComponent,
-    ProductComponent,
-    LoginComponent],
+   HeaderComponent,
+   SearchComponent,
+   HomeComponent,
+   ProductComponent,
+   LoginComponent,
+   ProfileComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

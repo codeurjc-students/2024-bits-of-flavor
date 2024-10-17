@@ -1,0 +1,35 @@
+<div class="profile-container">
+    <main>
+        <img src="/api/user/{{user.id}}/image">
+        <div class="user">
+            <h2> Nombre de usuario: </h2>
+            <div *ngIf="!editAttrUsername" class="attr">
+                <p class="user-info"> {{user.username}} </p>
+                <button (click)="editUsername()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrUsername" class="attr">
+                <input [(ngModel)]= "user.username" type="text" class="user-info"> 
+                <button (click)="confirmUsername()"> Confirmar </button>
+            </div>
+            <h2> Correo electrónico: </h2>
+            <div *ngIf="!editAttrEmail" class="attr">
+                <p class="user-info"> {{user.email}} </p>
+                <button (click)="editEmail()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrEmail" class="attr">
+                <input [(ngModel)]= "user.email" type="text" class="user-info"> 
+                <button (click)="confirmEmail()"> Confirmar </button>
+            </div>
+
+            <h2> Número de telefono: </h2>
+            <div *ngIf="!editAttrPhoneNumber" class="attr">
+                <p class="user-info"> {{user.email}} </p>
+                <button (click)="editEmail()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrPhoneNumber" class="attr">
+                <input [(ngModel)]= "user.email" type="text" class="user-info"> 
+                <button (click)="confirmEmail()"> Confirmar </button>
+            </div>
+        </div>
+        </main>
+</div>

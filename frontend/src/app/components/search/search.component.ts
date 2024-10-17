@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit{
   ngOnInit(){
     this.loadProducts();
   }
+  
   public loadProducts() {
     this.productService.getAllProducts().subscribe(
       (products: Product[]) => this.products = products
