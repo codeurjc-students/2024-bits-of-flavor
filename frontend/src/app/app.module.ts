@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
  declarations: [AppComponent,
@@ -18,7 +19,8 @@ import { ProfileComponent } from './components/profile/profile.component';
    HomeComponent,
    ProductComponent,
    LoginComponent,
-   ProfileComponent],
+   ProfileComponent,
+   PaymentComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

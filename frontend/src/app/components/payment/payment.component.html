@@ -1,0 +1,15 @@
+<div class="payment-container">
+    <div>
+        <label> Nombre en la tarjeta: </label>
+        <input type="text">
+        <label> Numero de tarjeta: </label>
+        <input type="text">
+        <label> Fecha de vencimiento: </label>
+        <input type="date">
+        <label> Codigo de Seguridad CVV: </label>
+        <input type="text">
+        <label> Fecha de recogida de producto </label>
+        <input [(ngModel)] = "date" type="date">
+        <button (click)="processPayment()"> Comprar </button>
+    </div>
+</div>

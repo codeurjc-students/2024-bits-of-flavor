@@ -22,13 +22,9 @@ public class Ticket {
 
     private LocalDate date;
 
-    public Ticket(User user) {
+    public Ticket(User user, Product product, LocalDate date) {
         this.user = user;
-    }
-
-    public Ticket(Long id, User user, LocalDate date) {
-        this.id = id;
-        this.user = user;
+        this.product = product;
         this.date = date;
     }
 
