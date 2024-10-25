@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "UserTable")
 public class User {
@@ -19,6 +20,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	@OneToMany (mappedBy = "user")
+	private List<Ticket> tickets;
 
 	private String username;
 	private String email;
@@ -43,6 +47,22 @@ public class User {
 		this.roles = List.of(roles);
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -59,18 +79,6 @@ public class User {
 		this.email = email;
 	}
 
-	public String getEncodedPassword() {
-		return encodedPassword;
-	}
-
-	public void setEncodedPassword(String encodedPassword) {
-		this.encodedPassword = encodedPassword;
-	}
-
-	public List<String> getRoles() {
-		return roles;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -79,16 +87,12 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
+	public String getEncodedPassword() {
+		return encodedPassword;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public void setEncodedPassword(String encodedPassword) {
+		this.encodedPassword = encodedPassword;
 	}
 
 	public Blob getImageFile() {
@@ -99,5 +103,11 @@ public class User {
 		this.imageFile = imageFile;
 	}
 
-	
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 }
