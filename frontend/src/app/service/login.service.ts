@@ -18,7 +18,7 @@ export class LoginService {
 
     reqIsLogged() {
 
-        this.http.get(BASE_URL + "/users/me", { withCredentials: true} ).subscribe({
+        this.http.get(BASE_URL + "/user/me", { withCredentials: true} ).subscribe({
             next: (v) => {
                 this.logged = true
                 this.user = v as User

@@ -44,7 +44,7 @@ public class TicketRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             Ticket createdTicket = ticketService.newTicket(user, product, date);
-            return ResponseEntity.created(URI.create("/api/product/" + createdTicket.getId())).body(createdTicket);
+            return ResponseEntity.created(URI.create("/api/ticket/" + createdTicket.getId())).body(createdTicket);
         }
     }
 }

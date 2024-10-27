@@ -19,6 +19,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product")
     private List<Ticket> tickets;
 

@@ -21,6 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@JsonIgnore
 	@OneToMany (mappedBy = "user")
 	private List<Ticket> tickets;
 

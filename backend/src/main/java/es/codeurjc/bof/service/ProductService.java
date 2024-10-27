@@ -20,7 +20,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProduct(long id) {
+    public Product getProduct(Long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isPresent()){
