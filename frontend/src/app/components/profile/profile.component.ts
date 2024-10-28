@@ -23,9 +23,7 @@ import { LoginService } from "../../service/login.service";
     }
 
     public loadCurrentUser(){
-        this.loginService.getCurrentUser().subscribe(
-            (user: User) => this.user = user
-        );
+        this.user = this.loginService.getUser();
     }
 
     public editUsername(){

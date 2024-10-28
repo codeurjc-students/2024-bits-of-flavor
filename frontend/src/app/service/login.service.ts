@@ -62,12 +62,17 @@ export class LoginService {
     isLogged() {
         return this.logged;
     }
-/*
+
+    getUser() {
+        return this.user;
+    }
+
     isAdmin() {
         return this.user && this.user.roles.indexOf('ADMIN') !== -1;
     }
-*/
+
     getCurrentUser(): Observable<User> {
+        console.log(this.user);
         return this.http.get("api/user/me", { withCredentials: true}) as Observable<User>;
     }
 }

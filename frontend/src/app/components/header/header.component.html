@@ -1,8 +1,14 @@
 <ul>
   <li><a routerLink="/home">Inicio</a></li>
   <li><a routerLink="/search">Buscar</a></li>
-  <li><a href="#admin">Admin</a></li>
-  <li><a href="#cart">Cart</a></li>
+  @if (loginService.isAdmin()){
+    <li><a href="#newProduct">AñadirProducto</a></li>
+  }
+  @if (!loginService.isLogged()){
   <li><a routerLink="/login">Iniciar Sesion</a></li>
-  <li><a href="/profile">Profile</a> </li>
+  }
+  @if (loginService.isLogged()){
+  <li><a (click)="logout()">Cerrar Sesion</a></li>
+  <li><a routerLink="/profile">Profile</a> </li>
+  }
 </ul>
