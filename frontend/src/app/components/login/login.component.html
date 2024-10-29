@@ -4,7 +4,7 @@
         <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required>
         <input [(ngModel)] = "user.encodedPassword" type = "password" placeholder="Contraseña" required>
         <div class="button-container">
-            <button class = "sign-button"(click)="submitLoginForm()"> Registrarse</button>
+            <button class = "sign-button" routerLink="/signup"> Registrarse</button>
             <button class = "login-button" (click)="submitLoginForm()"> Iniciar Sesión </button>
         </div>
     </main>

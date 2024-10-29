@@ -2,10 +2,11 @@
   <li><a routerLink="/home">Inicio</a></li>
   <li><a routerLink="/search">Buscar</a></li>
   @if (loginService.isAdmin()){
-    <li><a href="#newProduct">AñadirProducto</a></li>
+    <li><a href="#newProduct">Añadir Producto</a></li>
   }
   @if (!loginService.isLogged()){
   <li><a routerLink="/login">Iniciar Sesion</a></li>
+  <li><a routerLink="/signup">Registrarse</a></li>
   }
   @if (loginService.isLogged()){
   <li><a (click)="logout()">Cerrar Sesion</a></li>

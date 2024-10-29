@@ -11,6 +11,7 @@ import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
  declarations: [AppComponent,
@@ -20,7 +21,8 @@ import { PaymentComponent } from './components/payment/payment.component';
    ProductComponent,
    LoginComponent,
    ProfileComponent,
-   PaymentComponent],
+   PaymentComponent,
+   SignupComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })
