@@ -1,12 +1,10 @@
 package es.codeurjc.bof.service;
 
-import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import es.codeurjc.bof.model.User;
@@ -17,6 +15,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User getUser(Long id) {
         Optional<User> user = userRepository.findById(id);
@@ -43,6 +44,23 @@ public class UserService {
             return user.get();
         } else {
             return null;
+        }
+    }
+
+    public User createUser(User newUser) {
+        Optional<User> user = userRepository.getByUsername(newUser.getUsername());
+
+        if (user.isPresent()){
+            return null;
+        } else {
+            User createdUser = new User();
+            createdUser.setUsername(newUser.getUsername());
+            createdUser.setEmail(newUser.getEmail());
+            createdUser.setEncodedPassword(passwordEncoder.encode(newUser.getEncodedPassword()));
+            createdUser.setPhoneNumber(newUser.getPhoneNumber());
+            createdUser.setRoles(List.of("USER", "ADMIN"));
+            userRepository.save(createdUser);
+            return createdUser;
         }
     }
 

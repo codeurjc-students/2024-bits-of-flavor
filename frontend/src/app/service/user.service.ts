@@ -13,6 +13,10 @@ export class UserService {
 
     constructor(private httpClient: HttpClient){}
 
+    addUser(user: User): Observable<User> {
+        return this.httpClient.post(BASE_URL, user) as Observable<User>;
+    }
+
     updateUser(user: User): Observable<User> {
         return this.httpClient.put(BASE_URL + user.id, user) as Observable<User>
     }

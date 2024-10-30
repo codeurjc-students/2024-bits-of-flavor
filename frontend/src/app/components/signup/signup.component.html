@@ -2,11 +2,12 @@
     <main>
         <h1> Registrarse </h1>
         <div class="profile-picture">
-            <img src="assets/images/default-profile-picture.jpg" alt="Foto de perfil">
+            <img [src]="imageSrc" alt="Foto de perfil">
         </div>
-        <input type="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        <input (change)="modifyImageFile($event)" type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
         <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required>
         <input [(ngModel)] = "user.email" type="text" placeholder="Email" required>
+        <input [(ngModel)] = "user.phoneNumber" type="text" placeholder="Número de telefono" required>
         <input [(ngModel)] = "user.encodedPassword" type = "password" placeholder="Contraseña" required>
         <input type = "password" placeholder="Confirmar Contraseña" required>
         <div class="button-container">

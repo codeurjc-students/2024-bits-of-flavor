@@ -1,5 +1,6 @@
 package es.codeurjc.bof.controller;
 
+import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
 
@@ -10,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import es.codeurjc.bof.model.User;
 import es.codeurjc.bof.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @RestController
 @RequestMapping("/api/user")
@@ -43,6 +47,18 @@ public class UserRestController {
 
         return ResponseEntity.ok(user);
     }
+
+    @PostMapping("/")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User createdUser = userService.createUser(user);
+
+        if (createdUser == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return ResponseEntity.created(URI.create("/api/user/" + createdUser.getId())).body(createdUser);
+        }
+    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User newUser) throws SQLException {
