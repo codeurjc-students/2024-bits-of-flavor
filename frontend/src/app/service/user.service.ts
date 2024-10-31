@@ -20,4 +20,8 @@ export class UserService {
     updateUser(user: User): Observable<User> {
         return this.httpClient.put(BASE_URL + user.id, user) as Observable<User>
     }
+
+    setUserImage(user: User, data: FormData): Observable<User> {
+        return this.httpClient.put(BASE_URL + user.id + "/image", data) as Observable<User>
+    }
 }

@@ -1,6 +1,7 @@
 <div class="profile-container">
     <main>
         <img src="/api/user/{{user.id}}/image">
+        <input (change)="updateImage()" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
         <div class="user">
             <h2> Nombre de usuario: </h2>
             <div *ngIf="!editAttrUsername" class="attr">
@@ -23,12 +24,12 @@
 
             <h2> Número de telefono: </h2>
             <div *ngIf="!editAttrPhoneNumber" class="attr">
-                <p class="user-info"> {{user.email}} </p>
-                <button (click)="editEmail()"> Editar </button>
+                <p class="user-info"> {{user.phoneNumber}} </p>
+                <button (click)="editPhoneNumber()"> Editar </button>
             </div>
             <div *ngIf="editAttrPhoneNumber" class="attr">
-                <input [(ngModel)]= "user.email" type="text" class="user-info"> 
-                <button (click)="confirmEmail()"> Confirmar </button>
+                <input [(ngModel)]= "user.phoneNumber" type="text" class="user-info"> 
+                <button (click)="confirmPhoneNumber()"> Confirmar </button>
             </div>
         </div>
         </main>

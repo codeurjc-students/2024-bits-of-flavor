@@ -1,5 +1,6 @@
 package es.codeurjc.bof.controller;
 
+import java.io.IOException;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.bof.model.User;
 import es.codeurjc.bof.service.UserService;
@@ -93,4 +95,18 @@ public class UserRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}/image")
+    public ResponseEntity<User> updateImage(@PathVariable Long id, @RequestBody MultipartFile imageFile) throws IOException {
+        User dbUser = userService.getUser(id);
+
+        if (dbUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            dbUser.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            userService.updateUser(id, dbUser);
+            return ResponseEntity.ok(dbUser);
+        }
+    }
+    
 }

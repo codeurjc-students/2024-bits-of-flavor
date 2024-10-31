@@ -4,7 +4,7 @@
         <div class="profile-picture">
             <img [src]="imageSrc" alt="Foto de perfil">
         </div>
-        <input (change)="modifyImageFile($event)" type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        <input (change)="modifyImageFile($event)" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
         <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required>
         <input [(ngModel)] = "user.email" type="text" placeholder="Email" required>
         <input [(ngModel)] = "user.phoneNumber" type="text" placeholder="Número de telefono" required>

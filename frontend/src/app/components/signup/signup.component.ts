@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { UserService } from "../../service/user.service";
 import { User } from "../../model/user.model";
-import { LoginService } from "../../service/login.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-signup',
@@ -13,13 +13,28 @@ export class SignupComponent {
     user: User = new User();
     imageSrc: String = "assets/images/default-profile-picture.jpg";
 
-    constructor(private userService: UserService){}
+    @ViewChild("file")
+    file: any;
+
+    constructor(private userService: UserService, private router: Router){}
     
     public submitSignupForm(){
         if (this.user.username != "" && this.user.email != '' && this.user.encodedPassword != null){
             this.userService.addUser(this.user).subscribe(
-                (user: User) => console.log(user)
+                (user: User) => {
+                    this.updateImage(user);
+                    this.router.navigate(["/"]);
+                }
             );
+        }
+    }
+
+    public updateImage(user: User){
+        const image = this.file.nativeElement.files[0];
+        if (image) {
+          const data = new FormData();
+          data.append('imageFile', image);
+          this.userService.setUserImage(user, data).subscribe();
         }
     }
 

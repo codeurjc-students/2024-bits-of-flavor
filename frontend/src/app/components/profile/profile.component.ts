@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { User } from "../../model/user.model";
 import { UserService } from "../../service/user.service";
 import { LoginService } from "../../service/login.service";
@@ -15,6 +15,9 @@ import { LoginService } from "../../service/login.service";
     editAttrUsername: boolean = false;
     editAttrEmail: boolean = false;
     editAttrPhoneNumber: boolean = false;
+
+    @ViewChild("file")
+    file: any;
 
     constructor(private loginService: LoginService, private userService: UserService){}
 
@@ -57,5 +60,16 @@ import { LoginService } from "../../service/login.service";
         this.userService.updateUser(this.user).subscribe(
             () => this.loadCurrentUser()
         );
+    }
+
+    public updateImage(){
+        const image = this.file.nativeElement.files[0];
+        if (image) {
+          const data = new FormData();
+          data.append('imageFile', image);
+          this.userService.setUserImage(this.user, data).subscribe(
+            () => this.loadCurrentUser()
+          );
+        }
     }
   }
