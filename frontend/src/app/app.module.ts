@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { NewProduct } from './components/admin/newProduct.component';
 
 @NgModule({
  declarations: [AppComponent,
@@ -22,7 +23,8 @@ import { SignupComponent } from './components/signup/signup.component';
    LoginComponent,
    ProfileComponent,
    PaymentComponent,
-   SignupComponent],
+   SignupComponent,
+   NewProduct],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

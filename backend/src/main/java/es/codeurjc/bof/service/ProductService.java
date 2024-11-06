@@ -1,6 +1,5 @@
 package es.codeurjc.bof.service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +24,37 @@ public class ProductService {
 
         if (product.isPresent()){
             return product.get();
+        } else {
+            return null;
+        }
+    }
+
+    public Product createProduct(Product newProduct) {
+        Optional<Product> product = productRepository.getByName(newProduct.getName());
+
+        if (product.isPresent()){
+            return null;
+        } else {
+            Product createdProduct = new Product();
+            createdProduct.setName(newProduct.getName());
+            createdProduct.setInfo(newProduct.getInfo());
+            createdProduct.setWeight(newProduct.getWeight());
+            createdProduct.setPrice(newProduct.getPrice());
+            createdProduct.setCal(newProduct.getCal());
+            createdProduct.setProtein(newProduct.getProtein());
+            createdProduct.setFat(newProduct.getFat());
+            createdProduct.setCarbo(newProduct.getCarbo());
+            productRepository.save(createdProduct);
+            return createdProduct;
+        }
+    }
+
+    public Product updateProduct(Long id, Product updateProduct) {
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()){
+            updateProduct.setId(id);
+            productRepository.save(updateProduct);
+            return updateProduct;
         } else {
             return null;
         }

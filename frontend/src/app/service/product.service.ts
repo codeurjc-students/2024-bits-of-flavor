@@ -17,6 +17,14 @@ export class ProductService {
     }
 
     getProduct(id: number): Observable<Product> {
-        return this.httpClient.get(BASE_URL + '/' + id) as Observable<Product>;
+        return this.httpClient.get(BASE_URL + id) as Observable<Product>;
+    }
+
+    newProduct(product: Product): Observable<Product> {
+        return this.httpClient.post(BASE_URL, product) as Observable<Product>;
+    }
+
+    setProductImage(product: Product, data: FormData): Observable<Product> {
+        return this.httpClient.put(BASE_URL + product.id + "/image", data) as Observable<Product>
     }
 }

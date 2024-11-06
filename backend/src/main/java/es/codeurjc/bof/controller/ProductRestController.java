@@ -1,20 +1,28 @@
 package es.codeurjc.bof.controller;
 
+import java.io.IOException;
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.Collection;
 
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.service.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/product")
@@ -38,6 +46,17 @@ public class ProductRestController {
         }
     }
 
+    @PostMapping("/")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product createdProduct = productService.createProduct(product);
+
+        if (createdProduct == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return ResponseEntity.created(URI.create("/api/product/" + createdProduct.getId())).body(createdProduct);
+        }
+    }
+
     @GetMapping("/{id}/image")
     public ResponseEntity<Object> getProductImg(@PathVariable long id) throws SQLException{
         Product product = productService.getProduct(id);
@@ -50,6 +69,19 @@ public class ProductRestController {
                 .body(file);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{id}/image")
+    public ResponseEntity<Product> updateImage(@PathVariable Long id, @RequestBody MultipartFile imageFile) throws IOException {
+        Product dbProduct = productService.getProduct(id);
+
+        if (dbProduct == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            dbProduct.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+            productService.updateProduct(id, dbProduct);
+            return ResponseEntity.ok(dbProduct);
         }
     }
     

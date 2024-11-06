@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { NewProduct } from './components/admin/newProduct.component';
 
 const appRoutes: Routes = [
  { path: 'home', component: HomeComponent},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
  { path: 'login', component: LoginComponent},
  { path: 'profile', component: ProfileComponent},
  { path: 'ticket/:id', component: PaymentComponent},
- { path: 'signup', component: SignupComponent}
+ { path: 'signup', component: SignupComponent},
+ { path: 'newProduct', component: NewProduct}
 ]
 
 export const routing = RouterModule.forRoot(appRoutes)
