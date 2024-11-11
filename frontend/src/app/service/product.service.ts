@@ -27,4 +27,8 @@ export class ProductService {
     setProductImage(product: Product, data: FormData): Observable<Product> {
         return this.httpClient.put(BASE_URL + product.id + "/image", data) as Observable<Product>
     }
+
+    deleteProduct(id: number): Observable<Product> {
+        return this.httpClient.delete(BASE_URL + id) as Observable<Product>;
+    }
 }

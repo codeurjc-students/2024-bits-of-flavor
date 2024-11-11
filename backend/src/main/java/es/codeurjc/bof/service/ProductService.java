@@ -59,4 +59,14 @@ public class ProductService {
             return null;
         }
     }
+
+    public Product deleteProduct(Long id){
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()){
+            productRepository.deleteById(id);
+            return product.get();
+        } else {
+            return null;
+        }
+    }
 }

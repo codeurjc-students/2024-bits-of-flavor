@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.service.ProductService;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,6 +84,17 @@ public class ProductRestController {
             dbProduct.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
             productService.updateProduct(id, dbProduct);
             return ResponseEntity.ok(dbProduct);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Product> deleteProduct (@PathVariable Long id){
+        Product deletedProduct = productService.deleteProduct(id);
+
+        if (deletedProduct == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return ResponseEntity.ok(deletedProduct);
         }
     }
     

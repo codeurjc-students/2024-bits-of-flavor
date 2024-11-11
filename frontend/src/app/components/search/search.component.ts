@@ -22,4 +22,13 @@ export class SearchComponent implements OnInit{
     );
   }
 
+  public deleteProduct(id: number){
+    this.productService.deleteProduct(id).subscribe(
+      () => {
+        alert("Producto borrado correctamente");
+        this.loadProducts();
+      }
+    );
+  }
+
 }
