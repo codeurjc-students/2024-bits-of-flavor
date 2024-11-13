@@ -8,6 +8,7 @@ export class Product {
     protein: number;
     fat: number;
     carbo: number;
+    category: string;
 
     constructor() {
         this.id = 0;
@@ -19,5 +20,6 @@ export class Product {
         this.protein = 0;
         this.fat = 0;
         this.carbo = 0;
+        this.category = "";
     }
 }

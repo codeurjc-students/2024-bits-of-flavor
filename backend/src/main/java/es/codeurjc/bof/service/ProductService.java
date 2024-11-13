@@ -44,6 +44,7 @@ public class ProductService {
             createdProduct.setProtein(newProduct.getProtein());
             createdProduct.setFat(newProduct.getFat());
             createdProduct.setCarbo(newProduct.getCarbo());
+            createdProduct.setCategory(newProduct.getCategory());
             productRepository.save(createdProduct);
             return createdProduct;
         }

@@ -1,7 +1,7 @@
 <div class="search-container">
     <main>
         <ul>
-            <li *ngFor = "let product of products">
+            <li *ngFor = "let product of filtredProducts">
                 <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
                 <a routerLink ="/product/{{product.id}}"> <h2 class = "product-name"> {{product.name}} </h2> </a>
                 <div class="button-container">
@@ -13,5 +13,22 @@
         </ul>
     </main>
     <aside>
+        <h2> Filtrar por: </h2>
+        <div class = "filter-elem">
+            <label *ngFor="let category of foodTypes">
+                <input
+                type="checkbox"
+                [value]="category"
+                (change)="onCategoryChange($event)"
+                />
+                {{ category }}
+            </label>
+        </div>
+        <div class="filter-elem">
+            <label for="precioMin">Precio mínimo:</label>
+            <input id="precioMin" type="number" [(ngModel)]="minPrice" (change)="filter()" />
+            <label for="precioMax">Precio máximo:</label>
+            <input id="precioMax" type="number" [(ngModel)]="maxPrice" (change)="filter()"/>
+        </div>
     </aside>
 </div>

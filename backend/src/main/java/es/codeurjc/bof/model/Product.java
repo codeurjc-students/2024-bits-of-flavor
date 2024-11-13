@@ -36,13 +36,15 @@ public class Product {
     private float fat;
     private float carbo;
 
+    private String category;
+
     @Lob
     @JsonIgnore
     private Blob imageFile;
 
     public Product() { }
 
-    public Product(String name, String info, float weight, float price, float cal, float protein, float carbo, float fat) {
+    public Product(String name, String info, float weight, float price, float cal, float protein, float carbo, float fat, String category) {
         this.name = name;
         this.info = info;
         this.weight = weight;
@@ -51,6 +53,7 @@ public class Product {
         this.protein = protein;
         this.carbo = carbo;
         this.fat = fat;
+        this.category = category;
     }
 
     public Long getId() {
@@ -139,6 +142,14 @@ public class Product {
 
     public void setImageFile(Blob imageFile) {
         this.imageFile = imageFile;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 
