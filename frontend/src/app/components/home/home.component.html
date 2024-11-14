@@ -1,1 +1,16 @@
-<p>home works!</p>
+<div clas="home-container">
+    <img src="assets/images/supermarket.jpg" class="home-img">
+    <div class="offerts">
+        <h2> Productos Recomendados: </h2>
+        <ul>
+            <li *ngFor = "let product of products">
+                <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
+                <a routerLink ="/product/{{product.id}}"> <h2 class = "product-name"> {{product.name}} </h2> </a>
+                <div class="button-container">
+                    <h2 class = "product-price"> {{product.price}} € </h2>
+                    <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
