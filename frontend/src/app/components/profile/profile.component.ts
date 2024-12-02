@@ -12,6 +12,7 @@ import { LoginService } from "../../service/login.service";
   export class ProfileComponent implements OnInit{
 
     user: User = new User();
+    imageSrc: String = "assets/images/default-profile-picture.jpg"
     editAttrUsername: boolean = false;
     editAttrEmail: boolean = false;
     editAttrPhoneNumber: boolean = false;
@@ -27,6 +28,7 @@ import { LoginService } from "../../service/login.service";
 
     public loadCurrentUser(){
         this.user = this.loginService.getUser();
+        this.imageSrc = "/api/user/" + this.user.id + "/image";
     }
 
     public editUsername(){
@@ -71,5 +73,14 @@ import { LoginService } from "../../service/login.service";
             () => this.loadCurrentUser()
           );
         }
+    }
+
+    public modifyImageFile(event: any){
+        const reader = new FileReader();
+        reader.onload = (event: any) => {
+          this.imageSrc = event.target.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+        this.updateImage();
     }
   }

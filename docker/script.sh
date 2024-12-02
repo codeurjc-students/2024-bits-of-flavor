@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Definir variables
-DOCKER_USERNAME="jgar2020"
-DOCKER_PASSWORD="docker 2024"
+DOCKER_USERNAME="jperezsa2020"
+DOCKER_PASSWORD="yPKijG-314"
 IMAGE_NAME="java_app"
-VERSION="1.0"
+VERSION="2.0"
 
 # Iniciar sesión en Docker Hub
 echo "Iniciando sesión en Docker Hub..."

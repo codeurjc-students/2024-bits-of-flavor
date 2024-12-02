@@ -27,7 +27,7 @@ RUN mvn clean package -DskipTests
 FROM openjdk:23-jdk-slim
 
 # Copy the jar from the build stage
-COPY --from=buildBack /app/target/webapp15-0.0.1-SNAPSHOT.jar java-app.jar
+COPY --from=buildBack /app/target/bof-0.0.1-SNAPSHOT.jar java-app.jar
 
 # Specify the container's entrypoint
 CMD [ "java", "-jar", "java-app.jar" ]
