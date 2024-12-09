@@ -55,6 +55,7 @@ export class LoginService {
                 console.log("LOGOUT: Successfully");
                 this.logged = false;
                 this.user = new User();
+                this.router.navigate(['/']);
             });
 
     }

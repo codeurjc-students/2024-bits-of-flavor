@@ -116,29 +116,15 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         // Public PAGES
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("/search*").permitAll()
-                        .requestMatchers("/signup").permitAll()
-                        .requestMatchers("/artist/**").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/user/new").permitAll()
-                        .requestMatchers("/error/**").permitAll()
-                        .requestMatchers("/index/**").permitAll()
-                        .requestMatchers("/info_artist/**").permitAll()
-                        .requestMatchers("concert-list-data", "get-concerts", "amount-of-concerts-by-month").permitAll()
-                        .requestMatchers("more-artists", "more-tickets").permitAll()
-                        .requestMatchers("/login/**").permitAll()
-                        .requestMatchers("/signup/**").permitAll()
-                        .requestMatchers("/user/update/**").permitAll()
-                        .requestMatchers("/new/**").permitAll()
+                        .anyRequest().permitAll()
                         //.requestMatchers("api/**").permitAll()
-                        // Private PAGES
+                        /* Private PAGES
                         .requestMatchers("/profile", "/user/**").hasAnyRole("USER")
                         .requestMatchers("/payment/*").hasAnyRole("USER")
                         .requestMatchers("/create-artist").hasAnyRole("ADMIN")
                         .requestMatchers("/create-concert").hasAnyRole("ADMIN")
                         .requestMatchers("/search/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs**").hasAnyRole("ADMIN"))
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs**").hasAnyRole("ADMIN"))*/)
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/error")
