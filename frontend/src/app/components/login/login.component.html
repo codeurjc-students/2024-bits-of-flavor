@@ -1,8 +1,8 @@
 <div class="login-container">
     <main>
         <h1> Iniciar Sesión </h1>
-        <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required>
-        <input [(ngModel)] = "user.encodedPassword" type = "password" placeholder="Contraseña" required>
+        <input [(ngModel)] = "user.username" type = "text" placeholder="Usuario" required id="username-input">
+        <input [(ngModel)] = "user.encodedPassword" type = "password" placeholder="Contraseña" required id="password-input">
         <div class="button-container">
             <button class = "sign-button" routerLink="/signup"> Registrarse</button>
             <button class = "login-button" (click)="submitLoginForm()"> Iniciar Sesión </button>

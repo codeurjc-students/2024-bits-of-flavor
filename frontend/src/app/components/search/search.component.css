@@ -64,6 +64,11 @@ img {
     display: block;
 }
 
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
+  }
+
 .product-price {
     font-size: 20px;
     color: black;

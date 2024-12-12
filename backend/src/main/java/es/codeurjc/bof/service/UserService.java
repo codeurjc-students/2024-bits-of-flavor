@@ -58,7 +58,7 @@ public class UserService {
             createdUser.setEmail(newUser.getEmail());
             createdUser.setEncodedPassword(passwordEncoder.encode(newUser.getEncodedPassword()));
             createdUser.setPhoneNumber(newUser.getPhoneNumber());
-            createdUser.setRoles(List.of("USER", "ADMIN"));
+            createdUser.setRoles(List.of("USER"));
             userRepository.save(createdUser);
             return createdUser;
         }

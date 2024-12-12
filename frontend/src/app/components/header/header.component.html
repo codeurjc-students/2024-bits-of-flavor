@@ -1,15 +1,15 @@
 <ul>
   <li><a routerLink="/home">Inicio</a></li>
-  <li><a routerLink="/search">Buscar</a></li>
+  <li><a routerLink="/search" id="searchButton">Buscar</a></li>
   @if (loginService.isAdmin()){
     <li><a routerLink="/newProduct">Añadir Producto</a></li>
   }
   @if (!loginService.isLogged()){
-  <li><a routerLink="/login">Iniciar Sesion</a></li>
-  <li><a routerLink="/signup">Registrarse</a></li>
+  <li><a routerLink="/login" id="loginButton">Iniciar Sesion</a></li>
+  <li><a routerLink="/signup" id="signupButton">Registrarse</a></li>
   }
   @if (loginService.isLogged()){
   <li><a (click)="logout()">Cerrar Sesion</a></li>
-  <li><a routerLink="/profile">Profile</a> </li>
+  <li><a routerLink="/profile" id="profileButton">Profile</a> </li>
   }
 </ul>
