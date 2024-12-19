@@ -3,7 +3,7 @@
 
     <div class="product">
         <h1 id = "product-name"> {{product.name}} <span> ({{product.weight}} g) </span></h1>
-        <button class="add-button"> Añadir - {{product.price}} €</button>
+        <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir - {{product.price}} €</button>
         <h2> Ingredientes </h2>
         <p> {{product.info}}</p>
         <h2> Informacion nutricional </h2>

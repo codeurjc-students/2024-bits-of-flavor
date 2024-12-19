@@ -2,7 +2,7 @@
   <li><a routerLink="/home">Inicio</a></li>
   <li><a routerLink="/search" id="searchButton">Buscar</a></li>
   @if (loginService.isAdmin()){
-    <li><a routerLink="/newProduct">Añadir Producto</a></li>
+    <li><a routerLink="/newProduct" id="newProductButton">Añadir Producto</a></li>
   }
   @if (!loginService.isLogged()){
   <li><a routerLink="/login" id="loginButton">Iniciar Sesion</a></li>
