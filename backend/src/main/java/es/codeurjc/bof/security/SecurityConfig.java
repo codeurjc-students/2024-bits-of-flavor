@@ -69,23 +69,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
 
                         // PRIVATE ENDPOINTS
-                        .requestMatchers(HttpMethod.GET,"/api/users/**").hasAnyRole("USER","ADMIN")
-                        .requestMatchers(HttpMethod.GET,"/api/tickets/**").hasAnyRole("USER","ADMIN")
-                        
-                        .requestMatchers(HttpMethod.PUT,"/api/users/**").hasAnyRole("USER","ADMIN")
-                        .requestMatchers(HttpMethod.PUT,"/api/artists/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "api/product/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "api/product/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "api/product/**").hasAnyRole("ADMIN")
 
-                        .requestMatchers(HttpMethod.POST,"/api/login").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/api/logout").hasAnyRole("USER","ADMIN")
-                        .requestMatchers(HttpMethod.POST,"/api/concerts").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST,"/api/artists").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST,"/api/tickets").hasAnyRole("USER","ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
 
-                        .requestMatchers(HttpMethod.DELETE,"/api/tickets/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/api/users/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/api/artists/**").hasAnyRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE,"/api/concerts/**").hasAnyRole("ADMIN")
-
+                        .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "api/ticket/**").hasAnyRole("USER", "ADMIN")
                         // PUBLIC ENDPOINTS
                         .anyRequest().permitAll());
 
@@ -116,15 +107,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         // Public PAGES
-                        .anyRequest().permitAll()
-                        //.requestMatchers("api/**").permitAll()
-                        /* Private PAGES
-                        .requestMatchers("/profile", "/user/**").hasAnyRole("USER")
-                        .requestMatchers("/payment/*").hasAnyRole("USER")
-                        .requestMatchers("/create-artist").hasAnyRole("ADMIN")
-                        .requestMatchers("/create-concert").hasAnyRole("ADMIN")
-                        .requestMatchers("/search/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs**").hasAnyRole("ADMIN"))*/)
+                        .anyRequest().permitAll())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/error")
