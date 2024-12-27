@@ -1,7 +1,9 @@
 <div class="profile-container">
     <main>
-        <img [src]=imageSrc>
-        <input (change)="modifyImageFile($event)" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        <div>
+            <img class="userImg" [src]=imageSrc>
+            <input (change)="modifyImageFile($event)" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        </div>
         <div class="user">
             <h2> Nombre de usuario: </h2>
             <div *ngIf="!editAttrUsername" class="attr">
@@ -33,4 +35,18 @@
             </div>
         </div>
         </main>
+        <aside>
+            <h1> HISTORIAL DE COMPRAS </h1>
+            <ul>
+                <li *ngFor = "let ticket of tickets">
+                    <a> <img src="assets/images/pdf_icon.png" class="ticket_img"> </a>
+                    <h2 class="product-name"> {{ticket.product.name}} </h2>
+                    <div class="button-container">
+                        <p class = "date"> {{ticket.date}} </p>
+                        <p class = "date"> URJC </p>
+                        <button> Descargar PDF </button>
+                    </div>
+                </li>
+            </ul>
+        </aside>
 </div>

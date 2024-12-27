@@ -67,7 +67,7 @@ img {
 a {
     color: inherit; /* blue colors for links too */
     text-decoration: inherit; /* no underline */
-  }
+}
 
 .product-price {
     font-size: 20px;
@@ -82,7 +82,7 @@ a:link {
     text-decoration: none;
 }
   
-  a:visited {
+a:visited {
     text-decoration: none;
 }
 

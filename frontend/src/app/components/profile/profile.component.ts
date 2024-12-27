@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { User } from "../../model/user.model";
 import { UserService } from "../../service/user.service";
 import { LoginService } from "../../service/login.service";
+import { Ticket } from "../../model/ticket.model";
+import { TicketService } from "../../service/ticket.service";
+import { Product } from "../../model/product.model";
 
 @Component({
     selector: 'app-profile',
@@ -12,15 +15,18 @@ import { LoginService } from "../../service/login.service";
   export class ProfileComponent implements OnInit{
 
     user: User = new User();
+    product: Product = new Product();
     imageSrc: String = "assets/images/default-profile-picture.jpg"
     editAttrUsername: boolean = false;
     editAttrEmail: boolean = false;
     editAttrPhoneNumber: boolean = false;
 
+    tickets: Ticket[] = [];
+
     @ViewChild("file")
     file: any;
 
-    constructor(private loginService: LoginService, private userService: UserService){}
+    constructor(private loginService: LoginService, private userService: UserService, private ticketService: TicketService){}
 
     ngOnInit() {
         this.loadCurrentUser();
@@ -29,6 +35,9 @@ import { LoginService } from "../../service/login.service";
     public loadCurrentUser(){
         this.user = this.loginService.getUser();
         this.imageSrc = "/api/user/" + this.user.id + "/image";
+        this.ticketService.getTicketsFromUser().subscribe(
+            (tickets: Ticket[]) => this.tickets = tickets
+        );
     }
 
     public editUsername(){

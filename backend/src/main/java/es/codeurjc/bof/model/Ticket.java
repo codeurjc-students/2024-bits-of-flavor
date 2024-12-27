@@ -22,6 +22,8 @@ public class Ticket {
 
     private LocalDate date;
 
+    public Ticket(){}
+    
     public Ticket(User user, Product product, LocalDate date) {
         this.user = user;
         this.product = product;
@@ -50,5 +52,13 @@ public class Ticket {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

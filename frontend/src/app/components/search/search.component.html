@@ -7,7 +7,9 @@
                 <div class="button-container">
                     <h2 class = "product-price"> {{product.price}} € </h2>
                     <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir </button>
-                    <button class="delete-button" (click)="deleteProduct(product.id)" id="delete-{{product.name}}"> Borrar </button>
+                    @if (loginService.isAdmin()){
+                        <button class="delete-button" (click)="deleteProduct(product.id)" id="delete-{{product.name}}"> Borrar </button>
+                    }
                 </div>
             </li>
         </ul>

@@ -3,6 +3,7 @@ package es.codeurjc.bof.controller;
 import java.net.URI;
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import es.codeurjc.bof.service.ProductService;
 import es.codeurjc.bof.service.TicketService;
 import es.codeurjc.bof.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("/api/ticket")
@@ -46,4 +48,17 @@ public class TicketRestController {
             return ResponseEntity.created(URI.create("/api/ticket/" + createdTicket.getId())).body(createdTicket);
         }
     }
+
+    @GetMapping("/")
+    public Collection<Ticket> getAllTickets (HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            User user = userService.getUserByUsername(principal.getName());
+            if (user != null) {
+                return user.getTickets();
+            }
+        }
+        return null;
+    }
+    
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,7 +23,7 @@ public class User {
 	private Long id;
 
 	@JsonIgnore
-	@OneToMany (mappedBy = "user")
+	@OneToMany (mappedBy="user", cascade = CascadeType.REMOVE)
 	private List<Ticket> tickets;
 
 	private String username;

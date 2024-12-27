@@ -13,7 +13,10 @@ export class TicketService {
     constructor(private httpClient: HttpClient){}
 
     processPayment(id: number, date: Date): Observable<Ticket> {
-        console.log(date);
         return this.httpClient.post(BASE_URL + id, date) as Observable<Ticket>;
+    }
+
+    getTicketsFromUser(): Observable<Ticket[]> {
+        return this.httpClient.get(BASE_URL) as Observable<Ticket[]>
     }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../model/product.model';
+import { LoginService } from '../../service/login.service';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,7 @@ export class SearchComponent implements OnInit{
   public minPrice: number | null = null;
   public maxPrice: number | null = null;
 
-  constructor(private productService: ProductService){}
+  constructor(private productService: ProductService, public loginService: LoginService){}
 
   ngOnInit(){
     this.loadProducts();
