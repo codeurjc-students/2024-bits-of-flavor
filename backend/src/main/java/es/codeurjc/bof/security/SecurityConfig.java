@@ -77,6 +77,7 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "api/ticket/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/ticket/**").hasAnyRole("ADMIN", "USER")
                         // PUBLIC ENDPOINTS
                         .anyRequest().permitAll());
 

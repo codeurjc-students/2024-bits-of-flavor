@@ -3,7 +3,6 @@ package es.codeurjc.bof;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 

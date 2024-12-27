@@ -1,7 +1,6 @@
 package es.codeurjc.bof;
 
 import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
 import static org.hamcrest.Matchers.*;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -10,8 +9,6 @@ import org.springframework.http.HttpStatus;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.http.Cookie;
-import io.restassured.response.Response;
 
 class ProductRestControllerTest {
 
