@@ -69,7 +69,10 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        newUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(), dbUser.getImageFile().length()));
+        if (dbUser.getImageFile()!=null){
+            newUser.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(), dbUser.getImageFile().length()));
+        }
+        
             
         User updatedUser = this.userService.updateUser(id, newUser);
 
