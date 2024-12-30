@@ -4,7 +4,7 @@
 DOCKER_USERNAME="jperezsa2020"
 DOCKER_PASSWORD="docker2024"
 IMAGE_NAME="java_app"
-VERSION="2.0"
+VERSION="1.0"
 
 # Iniciar sesión en Docker Hub
 echo "Iniciando sesión en Docker Hub..."

@@ -64,7 +64,7 @@ import { Product } from "../../model/product.model";
 
     public confirmPhoneNumber(){
         this.updateUser();
-        this.editAttrPhoneNumber = true;
+        this.editAttrPhoneNumber = false;
     }
 
     public updateUser(){

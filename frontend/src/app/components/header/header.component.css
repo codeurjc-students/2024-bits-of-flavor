@@ -1,9 +1,19 @@
+h1 {
+  text-align: center;
+  border: 3px solid black;
+  margin: 0px;
+  border-bottom: none;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: rgb(200, 0, 0);
+  border: 3px solid black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 li {

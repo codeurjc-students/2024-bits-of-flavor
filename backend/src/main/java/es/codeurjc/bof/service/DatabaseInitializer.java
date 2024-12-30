@@ -97,6 +97,7 @@ public class DatabaseInitializer {
         userRepository.save(user);
 
         User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER", "ADMIN");
+        setUserImage(admin, "static/images/avatar1.jpg");
         userRepository.save(admin);
     }
 
