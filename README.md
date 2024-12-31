@@ -113,3 +113,38 @@ GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
 
 ![image](https://github.com/user-attachments/assets/33e39a45-a846-43a7-9e31-d04db983de60)
 
+### Diagrama de navegación
+
+![Diagrama de navegacion](https://github.com/user-attachments/assets/335a749b-4fd0-4fcd-8902-c7fbf8a9cde3)
+
+### Diagrama con las entidades de la base de datos
+
+![BBDD Class UML](https://github.com/user-attachments/assets/a8ff9e4d-0cd3-458e-8e5b-98bf30dc69ab)
+
+### Diagrama de clases del BACKEND
+
+![Backend UMLClass](https://github.com/user-attachments/assets/f8d9bcf2-2001-4b5f-9ef5-44bdadb5b57a)
+
+### Diagrama de clases del FRONTEND
+
+![Frontend UMLClass](https://github.com/user-attachments/assets/d8253492-2b8d-4b86-a718-478a576c3594)
+
+### Documentación para construcción de la imagen Docker
+
+IMPORTANTE: Es necesario tener Docker instalado en el ordenador o máquina virtual donde se construirá la imágen Docker.
+
+1. Clonar el repositorio de GitHub: [https://github.com/codeurjc-students/2024-bits-of-flavor.git]
+2. Abrir nueva terminal y situarnos en la raiz del proyecto. 
+3. Ejecutar el comando cd docker para cambiar de directorio.
+4. Ejecutar el comando ./script.sh para construir una nueva imágen Docker.
+5. La imágen se publicará en el repositorio [https://hub.docker.com/r/jperezsa2020/java_app].
+
+### Instrucciones de ejecución de la aplicación Dockerizada
+
+IMPORTANTE: Es necesario tener Docker instalado en el ordenador o máquina virtual donde se construirá la imágen Docker.
+
+1. Clonar el repositorio de GitHub: [https://github.com/codeurjc-students/2024-bits-of-flavor.git]
+2. Abrir nueva terminal y situarnos en la raiz del proyecto. 
+3. Ejecutar el comando cd docker para cambiar de directorio.
+4. Ejecutar el comando docker-compose up para iniciar el contenedor.
+5. La aplicación web estará disponible en la URL: https://localhost:8443/new/
