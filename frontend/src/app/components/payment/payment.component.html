@@ -1,0 +1,60 @@
+<div class="payment-container">
+    <main>
+        <div class="form-elem">
+             <label> Nombre en la tarjeta: </label>
+             <input type="text">
+        </div>
+         <div class="form-elem">
+            <label> Numero de tarjeta: </label>
+            <input type="text">
+        </div>
+        <div class="form-elem">
+            <label> Fecha de vencimiento: </label>
+            <input type="date">
+        </div>
+        <div class="form-elem">                
+            <label> Codigo de Seguridad CVV: </label>
+            <input type="text">
+        </div>
+        <div class="form-elem">
+            <label> Fecha de recogida de producto </label>
+            <input [(ngModel)] = "date" type="date" id="date-input">
+        </div>
+        <div class="button-container">
+            <button class="cancell-button"> Cancelar </button>
+            <button class="accept-button" (click)="processPayment()"> Aceptar </button>
+        </div>
+        
+    </main>
+
+    <aside>
+        <div>
+            <h2> {{product.name}} <span> ({{product.weight}} g) </span></h2>
+            <h2> Ingredientes </h2>
+            <p> {{product.info}}</p>
+            <h2> Informacion nutricional </h2>
+            <table>
+                <tr>
+                <th></th>
+                <th> por racion </th>
+                </tr>
+                <tr>
+                    <td> Calorias </td>
+                    <td> {{product.cal}} </td>
+                </tr>
+                <tr>
+                    <td> Proteinas </td>
+                    <td> {{product.protein}} </td>
+                </tr>
+                <tr>
+                    <td> Grasas </td>
+                    <td> {{product.fat}} </td>
+                </tr>
+                <tr>
+                    <td> Carbohidratos </td>
+                    <td> {{product.carbo}} </td>
+                </tr>
+            </table>
+        </div>
+    </aside>
+</div>

@@ -1,0 +1,16 @@
+<h1>Bits of Flavor</h1>
+<ul>
+  <li><a routerLink="/home">Inicio</a></li>
+  <li><a routerLink="/search" id="searchButton">Buscar</a></li>
+  @if (loginService.isAdmin()){
+    <li><a routerLink="/newProduct" id="newProductButton">Añadir Producto</a></li>
+  }
+  @if (!loginService.isLogged()){
+  <li><a routerLink="/login" id="loginButton">Iniciar Sesion</a></li>
+  <li><a routerLink="/signup" id="signupButton">Registrarse</a></li>
+  }
+  @if (loginService.isLogged()){
+  <li><a (click)="logout()">Cerrar Sesion</a></li>
+  <li><a routerLink="/profile" id="profileButton">Profile</a> </li>
+  }
+</ul>

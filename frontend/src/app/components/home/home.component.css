@@ -1,0 +1,101 @@
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-img {
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+    border: 3px solid black;
+    border-radius: 10px;
+    display:block;
+}
+
+.offerts {
+    background-color: #ffdada;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin: auto;
+    margin-top: 10px;
+    width: 100%;
+    display: block;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 0px;
+}
+
+li {
+    width: 200px;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: #eaeaea;
+    margin: 10px;
+    position: relative;
+    padding-bottom: 170px;
+}
+
+h2 {
+    margin-left:20px;
+}
+
+img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.product-name {
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.product-price {
+    font-size: 20px;
+    color: black;
+    width: 90%;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+a:link {
+    text-decoration: none;
+}
+  
+  a:visited {
+    text-decoration: none;
+}
+
+.button-container {
+    position:absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+button {
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.add-button {background-color: rgb(200, 0, 0);}

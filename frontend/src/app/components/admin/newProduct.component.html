@@ -1,0 +1,21 @@
+<div class="newProduct-container">
+    <main>
+        <h1> Añadir Producto </h1>
+        <div class="product-picture">
+            <img [src]="imageSrc" alt="Foto de producto">
+        </div>
+        <input (change)="modifyImageFile($event)" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        <input [(ngModel)] = "product.name"type = "text" placeholder="Nombre" id="name-input">
+        <input [(ngModel)] = "product.info" type="text" placeholder="Ingredientes" id="info-input">
+        <input [(ngModel)] = "product.weight" type="number" placeholder="Peso" id="weight-input">
+        <input [(ngModel)] = "product.price" type = "number" placeholder="Precio" id="price-input">
+        <input [(ngModel)] = "product.cal" type = "number" placeholder="Calorias" id="cal-input">
+        <input [(ngModel)] = "product.protein" type = "number" placeholder="Proteinas" id="protein-input">
+        <input [(ngModel)] = "product.fat" type = "number" placeholder="Grasas" id="fat-input">
+        <input [(ngModel)] = "product.carbo" type = "number" placeholder="Carbohidratos" id="carbo-input">
+        <div class="button-container">
+            <button class = "cancel" routerLink="/"> Cancelar </button>
+            <button class = "accept"(click)="submitNewProductForm()"> Aceptar </button>
+        </div>
+    </main>
+</div>

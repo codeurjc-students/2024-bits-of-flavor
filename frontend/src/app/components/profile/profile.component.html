@@ -1,0 +1,52 @@
+<div class="profile-container">
+    <main>
+        <div>
+            <img class="userImg" [src]=imageSrc>
+            <input (change)="modifyImageFile($event)" #file type ="file" name="image" placeholder="Foto" accept=".jpg, .jpeg, .png">
+        </div>
+        <div class="user">
+            <h2> Nombre de usuario: </h2>
+            <div *ngIf="!editAttrUsername" class="attr">
+                <p class="user-info"> {{user.username}} </p>
+                <button (click)="editUsername()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrUsername" class="attr">
+                <input [(ngModel)]= "user.username" type="text" class="user-info"> 
+                <button (click)="confirmUsername()"> Confirmar </button>
+            </div>
+            <h2> Correo electrónico: </h2>
+            <div *ngIf="!editAttrEmail" class="attr">
+                <p class="user-info"> {{user.email}} </p>
+                <button (click)="editEmail()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrEmail" class="attr">
+                <input [(ngModel)]= "user.email" type="text" class="user-info"> 
+                <button (click)="confirmEmail()"> Confirmar </button>
+            </div>
+
+            <h2> Número de telefono: </h2>
+            <div *ngIf="!editAttrPhoneNumber" class="attr">
+                <p class="user-info"> {{user.phoneNumber}} </p>
+                <button (click)="editPhoneNumber()"> Editar </button>
+            </div>
+            <div *ngIf="editAttrPhoneNumber" class="attr">
+                <input [(ngModel)]= "user.phoneNumber" type="text" class="user-info"> 
+                <button (click)="confirmPhoneNumber()"> Confirmar </button>
+            </div>
+        </div>
+        </main>
+        <aside>
+            <h1> HISTORIAL DE COMPRAS </h1>
+            <ul>
+                <li *ngFor = "let ticket of tickets">
+                    <a> <img src="assets/images/pdf_icon.png" class="ticket_img"> </a>
+                    <h2 class="product-name"> {{ticket.product.name}} </h2>
+                    <div class="button-container">
+                        <p class = "date"> {{ticket.date}} </p>
+                        <p class = "date"> URJC </p>
+                        <button> Descargar PDF </button>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+</div>

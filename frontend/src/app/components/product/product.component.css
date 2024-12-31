@@ -1,0 +1,64 @@
+div.product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+img {
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin: 20px;
+    margin-right: 10px;
+    flex:1;
+    min-width: 300px;
+}
+
+.product {
+    background-color:#ffdada;
+    border-radius: 10px;
+    border: 3px solid black;
+    margin: 20px;
+    margin-left: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    flex: 1;
+    min-width: 300px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 3px solid black;
+}
+  
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: auto;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.add-button {background-color: rgb(200, 0, 0);}

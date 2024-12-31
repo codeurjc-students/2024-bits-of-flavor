@@ -1,0 +1,28 @@
+
+services:
+  java_app:
+    container_name: java_app
+    image: jperezsa2020/java_app:1.0
+    ports:
+      - 8443:8443
+    environment:
+      SERVER_PORT: 8443
+      DATABASE_URL: jdbc:mysql://app_db/mydb
+      DATABASE_USER: bof
+      DATABASE_PASSWORD: tomate
+    restart: on-failure
+    depends_on:
+      - app_db
+
+  app_db:
+    image: mysql
+    environment:
+      MYSQL_USER: bof
+      MYSQL_PASSWORD: tomate
+      MYSQL_ROOT_PASSWORD: password # This is required
+      MYSQL_DATABASE: mydb
+#     volumes:
+#       - mysql:/var/lib/mysql
+  
+# volumes:
+#   mysql:
