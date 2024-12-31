@@ -79,3 +79,37 @@ GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
 7. Página de administrador para añadir un nuevo producto:
 
 ![image](https://github.com/user-attachments/assets/2e075264-516a-4c0a-b732-dd62b2c37b5c)
+
+## Fase 1. Versión con funcionalidad básica
+
+### Captura de pantallas y diagrama de navegación
+
+1. Página de inicio:
+
+![image](https://github.com/user-attachments/assets/0ad0e785-7e65-426d-828b-d2259ced1662)
+
+2. Página de Iniciar Sesion / Registrarse:
+
+![image](https://github.com/user-attachments/assets/6551256e-4045-43ff-a829-73f5222d3073)
+![image](https://github.com/user-attachments/assets/8671b6c1-a444-49f5-b125-d88729927c55)
+
+3. Página de búsqueda con filtro:
+
+![image](https://github.com/user-attachments/assets/12fd3fc1-c58b-4973-9db5-1e7bca191e33)
+
+4. Página de detalles de producto:
+
+![image](https://github.com/user-attachments/assets/bd3e52bd-ffb9-4a3f-805f-cc06940a7b9c)
+
+5. Página de perfil de usuario:
+
+![image](https://github.com/user-attachments/assets/08f0b643-fa70-4234-9f13-7835bf6cbe4e)
+
+6. Página de resumen de compra y proceso de pago:
+
+![image](https://github.com/user-attachments/assets/53ecd11f-f9b9-4f78-abe4-37a060147329)
+
+7. Página de administrador para añadir un nuevo producto:
+
+![image](https://github.com/user-attachments/assets/33e39a45-a846-43a7-9e31-d04db983de60)
+
