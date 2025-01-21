@@ -3,7 +3,10 @@
 La App permitirá a los miembros de la comunidad universitaria acceder a una oferta de productos alimenticios. Tiene el objetivo de brindar una alternativa para la limitada oferta de las cafeterías disponibles en la propia universidad.
 
 GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
+
 Blog de Medium: [https://medium.com/@jesusp.sanchez77]
+
+Video YouTube Fase 1: [https://youtu.be/QWPBhac1iVk?si=nwOW65DqL7pB7ikM]
 
 - Alumno: Jesús Pérez Sánchez
 - Tutor: Micael Gallego Carrillo
