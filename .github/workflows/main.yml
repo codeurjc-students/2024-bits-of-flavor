@@ -2,6 +2,7 @@ name: example
 
 on: 
   workflow_dispatch:
+  push:
 
 jobs:
   test:
@@ -13,5 +14,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - run: cd backend
-      - run: mvn test
+      - name: Run Selenium Tests
+        working-directory: backend
+        run: mvn test
