@@ -13,4 +13,5 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - run: cd backend
       - run: mvn test
