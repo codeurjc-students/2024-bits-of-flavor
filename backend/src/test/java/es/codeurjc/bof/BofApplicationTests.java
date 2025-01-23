@@ -81,8 +81,8 @@ class BofApplicationTests {
 	@Test
 	public void adminTest() throws InterruptedException {
 		driver.get("http://localhost:4200");
-		WebElement loginButton = driver.findElement(By.id("login-Button"));
-		WebElement searchButton = driver.findElement(By.id("search-Button"));
+		WebElement loginButton = driver.findElement(By.id("loginButton"));
+		WebElement searchButton = driver.findElement(By.id("searchButton"));
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
 		loginButton.click();
