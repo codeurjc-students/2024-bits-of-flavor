@@ -18,8 +18,8 @@ jobs:
 
     - name: Build and Run Spring Boot Backend
       run: |
-        cd backend
-        ./mvnw clean package -DskipTests
+        cd ./backend
+        mvn clean package -DskipTests
         nohup java -jar target/*.jar &
 
     - name: Run Spring Boot tests
