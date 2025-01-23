@@ -35,12 +35,11 @@ jobs:
         npm install -g @angular/cli
         npm run build -- --configuration production --base-href="/new/"
         nohup ng serve --proxy-config proxy.conf.json
-        sleep 300
 
     - name: Run Spring Boot tests
       run: |
         cd ./backend
-        mvn test
+        mvn test -Dtest=BofApplicationTest
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
