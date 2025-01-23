@@ -22,11 +22,24 @@ jobs:
         mvn clean package -DskipTests
         nohup java -jar target/*.jar &
 
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.17.0
+
+    # Build y ejecución del Frontend (sin tests)
+    - name: Build and Run Angular Frontend
+      run: |
+        cd ./frontend
+        npm install
+        run build --prod
+        nohup ng serve --proxy-config proxy.conf.json
+
     - name: Run Spring Boot tests
       run: |
         cd ./backend
         mvn test
-        
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -36,8 +49,5 @@ jobs:
     - name: Build and push Docker image
       run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/java_app:2.0 -f docker/Dockerfile .
-          docker push ${{ secrets.DOCKER_USERNAME }}/java_app:2.0
-          
-
-    
+          docker push ${{ secrets.DOCKER_USERNAME }}/java_app:2.0  
           
