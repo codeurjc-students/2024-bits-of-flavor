@@ -37,7 +37,7 @@ jobs:
         echo ok2
         npm run build --prod
         echo ok3
-        nohup ng serve --proxy-config proxy.conf.json
+        nohup npx http-server ./dist/[frontend] -p 4200 &
 
     - name: Run Spring Boot tests
       run: |
