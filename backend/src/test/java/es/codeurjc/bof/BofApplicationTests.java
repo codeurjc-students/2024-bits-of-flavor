@@ -26,7 +26,7 @@ class BofApplicationTests {
 	public void setupTest() {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(options);
 	}
 
 	@AfterEach
@@ -38,7 +38,7 @@ class BofApplicationTests {
 
 	@Test
 	public void anonymousTest() throws InterruptedException {
-		driver.get("http://localhost:4200");
+		driver.get("http://localhost:8443/new");
 		WebElement searchButton = driver.findElement(By.id("searchButton"));
 		searchButton.click();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -50,7 +50,7 @@ class BofApplicationTests {
 
 	@Test
 	public void userTest() throws InterruptedException {
-		driver.get("http://localhost:4200");
+		driver.get("http://localhost:8443/new");
 		WebElement singupButton = driver.findElement(By.id("signupButton"));
 		WebElement loginButton = driver.findElement(By.id("loginButton"));
 		WebElement searchButton = driver.findElement(By.id("searchButton"));
