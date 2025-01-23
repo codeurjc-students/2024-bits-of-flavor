@@ -32,9 +32,9 @@ jobs:
       run: |
         cd ./frontend
         npm ci
-        npm install
-        npm run build --prod
-        nohup npx http-server ./dist/[frontend] -p 4200 &
+        npm install -g @angular/cli
+        npm run build -- --configuration production --base-href="/new/"
+        nohup ng serve --proxy-config proxy.conf.json
         sleep 300
 
     - name: Run Spring Boot tests
