@@ -38,7 +38,7 @@ class BofApplicationTests {
 
 	@Test
 	public void anonymousTest() throws InterruptedException {
-		driver.get("http://localhost:8443/new");
+		driver.get("http://localhost:4200");
 		WebElement searchButton = driver.findElement(By.id("searchButton"));
 		searchButton.click();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
@@ -50,7 +50,7 @@ class BofApplicationTests {
 
 	@Test
 	public void userTest() throws InterruptedException {
-		driver.get("http://localhost:8443/new");
+		driver.get("http://localhost:4200");
 		WebElement singupButton = driver.findElement(By.id("signupButton"));
 		WebElement loginButton = driver.findElement(By.id("loginButton"));
 		WebElement searchButton = driver.findElement(By.id("searchButton"));
@@ -81,8 +81,8 @@ class BofApplicationTests {
 	@Test
 	public void adminTest() throws InterruptedException {
 		driver.get("http://localhost:4200");
-		WebElement loginButton = driver.findElement(By.id("loginButton"));
-		WebElement searchButton = driver.findElement(By.id("searchButton"));
+		WebElement loginButton = driver.findElement(By.id("login-Button"));
+		WebElement searchButton = driver.findElement(By.id("search-Button"));
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 
 		loginButton.click();
