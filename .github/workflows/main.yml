@@ -24,8 +24,8 @@ jobs:
         
     - name: Build and push Docker image
       run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/java_app:2.0 -f docker/Dockerfile .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/java_app:2.0
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/java_app:2.0 -f docker/Dockerfile .
+          docker push ${{ secrets.DOCKER_USERNAME }}/java_app:2.0
           
 
     
