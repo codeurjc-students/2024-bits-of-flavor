@@ -35,7 +35,7 @@ jobs:
         echo ok
         npm install
         echo ok2
-        run build --prod
+        npm run build --prod
         echo ok3
         nohup ng serve --proxy-config proxy.conf.json
 
