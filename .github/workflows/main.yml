@@ -39,7 +39,7 @@ jobs:
     - name: Run Spring Boot tests
       run: |
         cd ./backend
-        mvn test -Dtest=BofApplicationTest.java
+        mvn test -Dtest=BofApplicationTests.java
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
