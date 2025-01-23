@@ -31,8 +31,12 @@ jobs:
     - name: Build and Run Angular Frontend
       run: |
         cd ./frontend
+        npm ci
+        echo ok
         npm install
+        echo ok2
         run build --prod
+        echo ok3
         nohup ng serve --proxy-config proxy.conf.json
 
     - name: Run Spring Boot tests
