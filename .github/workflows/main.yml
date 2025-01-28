@@ -8,6 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0.22
+        options: >-
+          --env MYSQL_ROOT_PASSWORD=password
+          --env MYSQL_DATABASE=mydb
+          --env MYSQL_USER=bof
+          --env MYSQL_PASSWORD=tomate
+          --publish 3306:3306
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -17,6 +27,8 @@ jobs:
         distribution: 'temurin'
 
     - name: Build and Run Spring Boot Backend
+      env:
+          DATABASE_URL: jdbc:mysql://app_db:3306/mydb
       run: |
         cd ./backend
         mvn clean package -DskipTests
