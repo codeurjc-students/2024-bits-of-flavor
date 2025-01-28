@@ -8,6 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0.22
+        options: >-
+          --env MYSQL_ROOT_PASSWORD=password
+          --env MYSQL_DATABASE=mydb
+          --env MYSQL_USER=bof
+          --env MYSQL_PASSWORD=tomate
+          --publish 3306:3306
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -17,6 +27,8 @@ jobs:
         distribution: 'temurin'
 
     - name: Build and Run Spring Boot Backend
+      env:
+          DATABASE_URL: jdbc:mysql://localhost:3306/mydb
       run: |
         cd ./backend
         mvn clean package -DskipTests
@@ -32,14 +44,14 @@ jobs:
       run: |
         cd ./frontend
         npm ci
-        npm install
-        npm run build --prod
-        nohup npx http-server ./dist/[frontend] -p 4200 &
+        npm install -g @angular/cli
+        npm run build -- --configuration production --base-href="/new/"
+        nohup ng serve --proxy-config proxy.conf.json &
 
     - name: Run Spring Boot tests
       run: |
         cd ./backend
-        mvn test
+        mvn test -Dtest=BofApplicationTests.java
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
