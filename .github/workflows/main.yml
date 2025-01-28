@@ -48,14 +48,18 @@ jobs:
         npm run build -- --configuration production --base-href="/new/"
         nohup ng serve --proxy-config proxy.conf.json &
 
-    - name: Run Spring Boot tests 1
+    - name: Run Spring Boot test 1
       run: |
         cd ./backend
         mvn test -Dtest=BofApplicationTests.java#anonymousTest
-    - name: Run Spring Boot tests 2
+    - name: Run Spring Boot test 2
       run: |
         cd ./backend
         mvn test -Dtest=BofApplicationTests.java#adminTest
+    - name: Run Spring Boot test 3
+      run: |
+        cd ./backend
+        mvn test -Dtest=BofApplicationTests.java#userTest
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
