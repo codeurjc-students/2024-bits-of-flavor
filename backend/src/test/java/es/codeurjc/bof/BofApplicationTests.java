@@ -61,7 +61,7 @@ class BofApplicationTests {
 		driver.findElement(By.id("phoneNumber-input")).sendKeys("987654321");
 		driver.findElement(By.id("pasword-input")).sendKeys("pepinillo");
 		driver.findElement(By.className("sign-button")).click();
-		driver.wait(5000);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
 		
 		loginButton.click();
 		driver.findElement(By.id("username-input")).sendKeys("SeleniumTest");
