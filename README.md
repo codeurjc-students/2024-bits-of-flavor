@@ -114,6 +114,24 @@ Tiene acceso a todas las funcionalides disponibles en la aplicación.
 
 ![Frontend UMLClass](https://github.com/user-attachments/assets/d8253492-2b8d-4b86-a718-478a576c3594)
 
+## Fase 2. Integración y entrega continua.
+
+### INTEGRACIÓN CONTINUA
+
+Al realizar una pull-request se ejecuta el workflow CI. Por el momento este workflow
+ejecuta los test de Selenium referentes a las funcionalidades de usuario anónimo y administrador.
+El resultado se puede ver en el apartado ACTIONS de GitHub.
+Pueden surgir errores aleatorios. Si el resultado es negativo (fallo en los test) se debera ejecutar
+manualmente (Workflow-dispatch) el workflow. Si el error persiste es tarea del programador solucionarlo antes de cerrar la pull-request.
+
+### PUBLICACIÓN DE RELEASE
+
+Al realizar una realease desde GitHub, se ejecuta el workflow CD. Se encarga de publicar la imágen
+Docker correspondiente. Antes de publicar una release, se debe realizar un commit directamente en la
+rama main modificando la versión del pom.xml. Se publican en total dos imágenes. La primera con
+el tag main y la segunda con el tag con la fecha y la hora de construcción.
+Este workflow también se puede ejecutar manualmente (Workflow-dispatch).
+
 ## Fase 0. Definición de las funcionalidades de la web
 
 ### Entidades
