@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +24,9 @@ class BofApplicationTests {
 
 	@BeforeEach
 	public void setupTest() {
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless");
+		driver = new ChromeDriver(options);
 	}
 
 	@AfterEach
@@ -56,9 +59,10 @@ class BofApplicationTests {
 		driver.findElement(By.id("username-input")).sendKeys("SeleniumTest");
 		driver.findElement(By.id("email-input")).sendKeys("selenium01@test.com");
 		driver.findElement(By.id("phoneNumber-input")).sendKeys("987654321");
-		driver.findElement(By.id("password-input")).sendKeys("pepinillo");
+		driver.findElement(By.id("pasword-input")).sendKeys("pepinillo");
 		driver.findElement(By.className("sign-button")).click();
-
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
 		loginButton.click();
 		driver.findElement(By.id("username-input")).sendKeys("SeleniumTest");
 		driver.findElement(By.id("password-input")).sendKeys("pepinillo");
