@@ -25,6 +25,6 @@ jobs:
     - name: Build and push Docker image
       run: |
           tag=$(date +'%Y%m%d.%H%M%S')
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/java_app:2.0 -f docker/Dockerfile .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/java_app:main -t ${{ secrets.DOCKERHUB_USERNAME }}/java_app:$tag -f docker/Dockerfile .
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:main
           docker push ${{ secrets.DOCKER_USERNAME }}/java_app:$tag 
