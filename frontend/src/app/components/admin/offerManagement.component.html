@@ -1,0 +1,24 @@
+<div class="om-container">
+    <aside>
+        <div class="attr">
+            <label> Nombre: </label>
+            <input [(ngModel)]="offer.name" type="text" placeholder="Nombre">
+        </div>
+        <div class="attr">
+            <label> Seleccione producto:    </label>
+            <select [(ngModel)]="productId" name="offer-selector" id="offer-selector">
+                <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+            </select>
+        </div>
+        <div class="attr">
+            <label> Fecha de expiración: </label>
+            <input [(ngModel)]="offer.expDate" type="date">
+        </div>
+        <div class="attr">
+            <label> Porcentaje de descuento: </label>
+            <input [(ngModel)]="offer.discount" type="number">
+        </div>
+        <button (click)="addOffer()">Añadir</button>
+    </aside>
+    <main></main>
+</div>

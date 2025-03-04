@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -23,6 +24,10 @@ public class Product {
     @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Ticket> tickets;
+
+   @JsonIgnore
+    @OneToOne(mappedBy = "product")
+    private Offer offer;
 
     private String name;
 
@@ -153,5 +158,12 @@ public class Product {
         this.category = category;
     }
 
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
 
 }

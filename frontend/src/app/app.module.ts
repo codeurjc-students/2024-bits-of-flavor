@@ -14,6 +14,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { NewProduct } from './components/admin/newProduct.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { OfferManagement } from './components/admin/offerManagement.component';
 
 @NgModule({
  declarations: [AppComponent,
@@ -26,7 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
    PaymentComponent,
    SignupComponent,
    NewProduct,
-   FooterComponent],
+   FooterComponent,
+   OfferManagement],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })
