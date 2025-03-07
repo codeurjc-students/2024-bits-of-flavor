@@ -4,12 +4,11 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Offer {
@@ -18,13 +17,25 @@ public class Offer {
 	private Long id;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Product product;
 
     private String name;
     private LocalDate expDate;
     private int discount;
     private float price;
+
+    public Offer() {
+    }
+
+    public Offer(Product product, String name, LocalDate expDate, int discount, float price) {
+        this.product = product;
+        this.name = name;
+        this.expDate = expDate;
+        this.discount = discount;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
@@ -62,4 +73,7 @@ public class Offer {
         this.price = price;
     }
 
+    public boolean isActive() {
+        return this.expDate.isAfter(LocalDate.now());
+    }
 }

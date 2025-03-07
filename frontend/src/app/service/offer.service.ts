@@ -14,4 +14,12 @@ export class OfferService{
     public addOffer (offer: Offer, productId: number):Observable<Offer> {
         return this.httpClient.post(BASE_URL + productId, offer) as Observable<Offer>;
     }
+
+    public getAllOffers(): Observable<Offer[]>{
+        return this.httpClient.get(BASE_URL) as Observable<Offer[]>;
+    }
+
+    public deleteOffer(id: number): Observable<Offer>{
+        return this.httpClient.delete(BASE_URL + id) as Observable<Offer>;
+    }
 }

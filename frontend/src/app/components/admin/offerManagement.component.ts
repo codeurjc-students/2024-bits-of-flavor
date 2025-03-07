@@ -18,27 +18,41 @@ export class OfferManagement implements OnInit{
     public products: Product[] = [];
     public productId: number = 0;
 
+    tomorrow = new Date();
+
     constructor(private offerService: OfferService, private productService: ProductService){}
 
     ngOnInit(){
-        this.loadProducts();
-      }
+        this.tomorrow.setDate(this.tomorrow.getDate() + 1);
+        this.tomorrow.setHours(0, 0, 0, 0);
+        this.loadOffers();
+        this.loadProducts();  
+    }
       
-      public loadProducts() {
+    public loadProducts() {
+        const today = new Date();
         this.productService.getAllProducts().subscribe(
-          (products: Product[]) => {
-            this.products = products;
-          }
+          (products: Product[]) => this.products = products
         );
-      }
+    }
+
+    public loadOffers() {
+        this.offerService.getAllOffers().subscribe(
+            (offers: Offer[]) => {
+                this.offers = offers;
+            }
+        )
+    }
+
 
     public addOffer(){
         if(this.checkFields()){
             this.offerService.addOffer(this.offer, this.productId).subscribe({
                 next: (offer: Offer) => {
                     console.log(offer);
-                    this.offer = new Offer();
                     this.productId = 0;
+                    this.loadOffers();
+                    this.loadProducts();
                 },
                 error: (e: HttpErrorResponse) => console.log(e)
         });
@@ -54,10 +68,8 @@ export class OfferManagement implements OnInit{
             alert("ERROR: Seleccione descuento entre 1 y 90");
             return false
         }
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        tomorrow.setHours(0, 0, 0, 0);
-        if(new Date(this.offer.expDate) < tomorrow){
+        
+        if(new Date(this.offer.expDate) < this.tomorrow){
             alert("ERROR: Seleccione fecha futura");
             return false
         }
@@ -66,5 +78,18 @@ export class OfferManagement implements OnInit{
             return false
         }
         return true;
+    }
+
+    public deleteOffer(id: number) {
+        if(confirm('¿Borrar oferta?')){
+            this.offerService.deleteOffer(id).subscribe({
+                next: () => {
+                    alert('Oferta borrada con exito');
+                    this.loadOffers();
+                    this.loadProducts();
+                },
+                error: (e: HttpErrorResponse) => console.log(e)
+            })
+        }
     }
 }

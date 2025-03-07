@@ -1,6 +1,7 @@
 package es.codeurjc.bof.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.model.User;
+import es.codeurjc.bof.repository.OfferRepository;
 import es.codeurjc.bof.repository.ProductRepository;
 import es.codeurjc.bof.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -23,6 +26,9 @@ public class DatabaseInitializer {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private OfferRepository offerRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -99,8 +105,16 @@ public class DatabaseInitializer {
         User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER", "ADMIN");
         setUserImage(admin, "static/images/avatar1.jpg");
         userRepository.save(admin);
-    }
 
+        Offer offer1a = new Offer(product1, "Diciembre 2024", LocalDate.parse("2024-12-15"), 50, 4.07f);
+        Offer offer1b = new Offer(product1, "Enero 2025", LocalDate.parse("2025-01-15"), 50, 4.07f);
+        Offer offer1c = new Offer(product1, "Febrero 2025", LocalDate.parse("2025-02-15"), 50, 4.07f);
+        Offer offer1d = new Offer(product1, "Abril 2025", LocalDate.parse("2025-04-15"), 50, 4.07f);
+        offerRepository.save(offer1a);
+        offerRepository.save(offer1b);
+        offerRepository.save(offer1c);
+        offerRepository.save(offer1d);
+    }
     public void setProductImage(Product product, String path) throws IOException{
         Resource image = new ClassPathResource(path);
         product.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));

@@ -20,5 +20,10 @@
         </div>
         <button (click)="addOffer()">Añadir</button>
     </aside>
-    <main></main>
+    <main>
+        <div *ngFor="let offer of offers">
+            {{offer.name}}
+            <button (click)="deleteOffer(offer.id)"> Borrar </button>
+        </div>
+    </main>
 </div>
