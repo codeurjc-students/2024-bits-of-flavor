@@ -11,7 +11,7 @@ export class Product {
     fat: number;
     carbo: number;
     category: string;
-    offers: Offer[];
+    active: boolean;
 
     constructor() {
         this.id = 0;
@@ -24,6 +24,6 @@ export class Product {
         this.fat = 0;
         this.carbo = 0;
         this.category = "";
-        this.offers = [];
+        this.active = false;
     }
 }

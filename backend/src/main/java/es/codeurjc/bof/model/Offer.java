@@ -2,8 +2,6 @@ package es.codeurjc.bof.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,24 +14,23 @@ public class Offer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-    @JsonIgnore
     @ManyToOne
     private Product product;
 
     private String name;
     private LocalDate expDate;
     private int discount;
-    private float price;
+    private float newPrice;
 
     public Offer() {
     }
 
-    public Offer(Product product, String name, LocalDate expDate, int discount, float price) {
+    public Offer(Product product, String name, LocalDate expDate, int discount, float newPrice) {
         this.product = product;
         this.name = name;
         this.expDate = expDate;
         this.discount = discount;
-        this.price = price;
+        this.newPrice = newPrice;
     }
 
     public Long getId() {
@@ -66,11 +63,11 @@ public class Offer {
     public void setDiscount(int discount) {
         this.discount = discount;
     }
-    public float getPrice() {
-        return price;
+    public float getNewPrice() {
+        return newPrice;
     }
-    public void setPrice(float price) {
-        this.price = price;
+    public void setNewPrice(float newPrice) {
+        this.newPrice = newPrice;
     }
 
     public boolean isActive() {

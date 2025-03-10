@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 @RestController
 @RequestMapping("/api/offers")
 public class OfferRestController {
@@ -34,6 +35,18 @@ public class OfferRestController {
     public Collection<Offer> getAllOffers() {
         return offerService.getAllOffers();
     }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<Offer> getOfferByProduct(@PathVariable Long productId) {
+        Product product = productService.getProduct(productId);
+        if (product == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        } else {
+            Offer offer = offerService.getOfferByProduct(product);
+            return ResponseEntity.ok(offer);
+        }
+    }
+    
     
     
     @PostMapping("/{id}")

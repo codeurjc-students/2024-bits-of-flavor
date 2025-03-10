@@ -21,9 +21,23 @@
         <button (click)="addOffer()">Añadir</button>
     </aside>
     <main>
-        <div *ngFor="let offer of offers">
-            {{offer.name}}
-            <button (click)="deleteOffer(offer.id)"> Borrar </button>
-        </div>
+        <table>
+            <tr>
+              <th>Nombre: </th>
+              <th>Producto: </th>
+              <th>Precio: </th>
+              <th>Descuento: </th>
+              <th>Fecha de valided: </th>
+            </tr>
+            <tr  *ngFor="let offer of offers">
+                    <td> {{offer.name}} </td>
+                    <td> {{offer.product.name}} </td>
+                    <td> <del>{{offer.product.price}}</del> {{offer.newPrice}} </td>
+                    <td> {{offer.discount}} % </td>
+                    <td> {{offer.expDate}} </td>
+                    <td> <button (click)="deleteOffer(offer.id)"> Borrar </button> </td>
+            </tr>
+        </table>
+
     </main>
 </div>

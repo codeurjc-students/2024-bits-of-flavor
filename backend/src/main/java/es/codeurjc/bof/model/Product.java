@@ -24,6 +24,7 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Ticket> tickets;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
     private List<Offer> offers;
 
@@ -164,4 +165,7 @@ public class Product {
         this.offers = offers;
     }
 
+    public boolean isActive(){
+        return offers.stream().anyMatch(Offer::isActive);
+    }
 }

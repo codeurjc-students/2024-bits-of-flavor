@@ -6,6 +6,8 @@ export class Offer {
     expDate: Date;
     discount: number;
     newPrice: number;
+    product: Product;
+    active: boolean;
 
     constructor() {
         this.id = 0;
@@ -13,5 +15,7 @@ export class Offer {
         this.expDate = new Date();
         this.discount = 0;
         this.newPrice = 0;
+        this.product = new Product();
+        this.active = true;
     }
 }

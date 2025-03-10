@@ -2,12 +2,10 @@ package es.codeurjc.bof.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.repository.ProductRepository;
 
@@ -18,7 +16,8 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
-        List<Product> productList = productRepository.findAll();
+        return productRepository.findAll();
+        /*List<Product> productList = productRepository.findAll();
         return productList.stream()
         .map(product -> {
             List<Offer> activeOffer = product.getOffers().stream()
@@ -30,7 +29,7 @@ public class ProductService {
             product.setOffers(activeOffer);
             return product;
         })
-        .collect(Collectors.toList());
+        .collect(Collectors.toList());*/
     }
 
     public Product getProduct(Long id) {

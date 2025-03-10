@@ -20,13 +20,20 @@ public class OfferService {
         return this.offerRepository.findAll();
     }
 
+    public Offer getOfferByProduct(Product product) {
+        return this.offerRepository.findByProduct(product).stream()
+        .filter(Offer::isActive)
+        .findFirst()
+        .orElse(null);
+    }
+
     public Offer createOffer(Offer offer, Product product){
         Offer createdOffer = new Offer();
         createdOffer.setName(offer.getName());
         createdOffer.setExpDate(offer.getExpDate());
         createdOffer.setDiscount(offer.getDiscount());
         createdOffer.setProduct(product);
-        createdOffer.setPrice(product.getPrice() * (100 - offer.getDiscount()) / 100);
+        createdOffer.setNewPrice(product.getPrice() * (100 - offer.getDiscount()) / 100);
         offerRepository.save(createdOffer);
         return createdOffer;
     }

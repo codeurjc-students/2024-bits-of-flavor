@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 @RestController
 @RequestMapping("/api/product")
 public class ProductRestController {
@@ -36,7 +37,7 @@ public class ProductRestController {
     @GetMapping("/")
     public Collection<Product> getAllProducts() {
         return productService.getAllProducts();
-    }
+    }    
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable long id) {
