@@ -20,12 +20,12 @@ public class Offer {
     private String name;
     private LocalDate expDate;
     private int discount;
-    private float newPrice;
+    private double newPrice;
 
     public Offer() {
     }
 
-    public Offer(Product product, String name, LocalDate expDate, int discount, float newPrice) {
+    public Offer(Product product, String name, LocalDate expDate, int discount, double newPrice) {
         this.product = product;
         this.name = name;
         this.expDate = expDate;
@@ -63,10 +63,10 @@ public class Offer {
     public void setDiscount(int discount) {
         this.discount = discount;
     }
-    public float getNewPrice() {
+    public double getNewPrice() {
         return newPrice;
     }
-    public void setNewPrice(float newPrice) {
+    public void setNewPrice(double newPrice) {
         this.newPrice = newPrice;
     }
 

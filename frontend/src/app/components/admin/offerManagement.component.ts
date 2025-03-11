@@ -33,7 +33,7 @@ export class OfferManagement implements OnInit{
         const today = new Date();
         this.productService.getAllProducts().subscribe(
           (products: Product[]) => {
-            this.products = products.filter(product => !product.active);;
+            this.products = products.filter(product => !product.active);
           }
         );
     }

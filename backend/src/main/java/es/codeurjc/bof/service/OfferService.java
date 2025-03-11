@@ -33,7 +33,7 @@ public class OfferService {
         createdOffer.setExpDate(offer.getExpDate());
         createdOffer.setDiscount(offer.getDiscount());
         createdOffer.setProduct(product);
-        createdOffer.setNewPrice(product.getPrice() * (100 - offer.getDiscount()) / 100);
+        createdOffer.setNewPrice(Math.round(product.getPrice() * (100 - offer.getDiscount()) / 100.0 * 100.0) / 100.0);
         offerRepository.save(createdOffer);
         return createdOffer;
     }

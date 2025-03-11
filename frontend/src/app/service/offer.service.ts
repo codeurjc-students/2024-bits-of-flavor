@@ -19,6 +19,10 @@ export class OfferService{
         return this.httpClient.get(BASE_URL) as Observable<Offer[]>;
     }
 
+    public getOfferByProduct(productId: number): Observable<Offer> {
+        return this.httpClient.get(BASE_URL + productId) as Observable<Offer>;
+    }
+
     public deleteOffer(id: number): Observable<Offer>{
         return this.httpClient.delete(BASE_URL + id) as Observable<Offer>;
     }

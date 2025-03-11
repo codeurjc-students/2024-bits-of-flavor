@@ -106,10 +106,10 @@ public class DatabaseInitializer {
         setUserImage(admin, "static/images/avatar1.jpg");
         userRepository.save(admin);
 
-        Offer offer1a = new Offer(product1, "Diciembre 2024", LocalDate.parse("2024-12-15"), 50, 4.07f);
-        Offer offer1b = new Offer(product1, "Enero 2025", LocalDate.parse("2025-01-15"), 50, 4.07f);
-        Offer offer1c = new Offer(product1, "Febrero 2025", LocalDate.parse("2025-02-15"), 50, 4.07f);
-        Offer offer1d = new Offer(product1, "Abril 2025", LocalDate.parse("2025-04-15"), 50, 4.07f);
+        Offer offer1a = new Offer(product1, "Diciembre 2024", LocalDate.parse("2024-12-15"), 50, 4.07);
+        Offer offer1b = new Offer(product1, "Enero 2025", LocalDate.parse("2025-01-15"), 50, 4.07);
+        Offer offer1c = new Offer(product1, "Febrero 2025", LocalDate.parse("2025-02-15"), 50, 4.07);
+        Offer offer1d = new Offer(product1, "Abril 2025", LocalDate.parse("2025-04-15"), 50, 4.07);
         offerRepository.save(offer1a);
         offerRepository.save(offer1b);
         offerRepository.save(offer1c);

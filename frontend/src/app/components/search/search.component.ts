@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../service/product.service';
 import { Product } from '../../model/product.model';
 import { LoginService } from '../../service/login.service';
+import { OfferService } from '../../service/offer.service';
+import { Offer } from '../../model/offer.model';
 
 @Component({
   selector: 'app-search',
@@ -10,16 +12,19 @@ import { LoginService } from '../../service/login.service';
 })
 export class SearchComponent implements OnInit{
   public products: Product[] = [];
+  public offers: Offer[] = [];
   public filtredProducts: Product[] = [];
   public foodTypes: string[] = []
   public selectedCategory: Set<string> = new Set();
   public minPrice: number | null = null;
   public maxPrice: number | null = null;
+  public activeOffer: boolean | null = null;
 
-  constructor(private productService: ProductService, public loginService: LoginService){}
+  constructor(private productService: ProductService, private offerService: OfferService, public loginService: LoginService){}
 
   ngOnInit(){
     this.loadProducts();
+    this.loadActiveOffers();
   }
   
   public loadProducts() {
@@ -30,6 +35,14 @@ export class SearchComponent implements OnInit{
         this.filtredProducts = products;
       }
     );
+  }
+
+  public loadActiveOffers(){
+    this.offerService.getAllOffers().subscribe(
+      (offers: Offer[]) => {
+        this.offers = offers.filter(offer => offer.active);
+      }
+    )
   }
 
   public deleteProduct(id: number){
@@ -51,6 +64,17 @@ export class SearchComponent implements OnInit{
     this.filter();
   }
 
+  public onActiveChange(isActiveOffer:boolean | null){
+    if (isActiveOffer) {
+      this.activeOffer = true;
+    } else if (isActiveOffer === null) {
+      this.activeOffer = null;
+    } else {
+      this.activeOffer = false;
+    }
+    this.filter();
+  }
+
   public filter() {
     this.filtredProducts = this.products.filter(product => {
       const isCategory =
@@ -58,8 +82,13 @@ export class SearchComponent implements OnInit{
         this.selectedCategory.has(product.category);
       const isMinPrice = this.minPrice === null || product.price >= this.minPrice;
       const isMaxPrice = this.maxPrice === null || product.price <= this.maxPrice;
-      return isCategory && isMinPrice && isMaxPrice;
+      const isActiveOffer = this.activeOffer === null || product.active === this.activeOffer;
+      return isCategory && isMinPrice && isMaxPrice && isActiveOffer;
     });
+  }
+
+  public getOffer(productId: number){
+    return this.offers.find(offer => offer.product.id === productId) || null;
   }
 
 }
