@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.model.Ticket;
 import es.codeurjc.bof.model.User;
+import es.codeurjc.bof.service.OfferService;
 import es.codeurjc.bof.service.ProductService;
 import es.codeurjc.bof.service.TicketService;
 import es.codeurjc.bof.service.UserService;
@@ -36,6 +38,9 @@ public class TicketRestController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private OfferService officeService;
+
     @PostMapping("/{id}")
     public ResponseEntity<Ticket> processPayment(@PathVariable Long id, @RequestBody LocalDate date, HttpServletRequest request){
         Principal principal = request.getUserPrincipal();
@@ -45,6 +50,10 @@ public class TicketRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             Ticket createdTicket = ticketService.newTicket(user, product, date);
+            if (product.isActive()) {
+                Offer offer = officeService.getOfferByProduct(product);
+                createdTicket = ticketService.setOffer(createdTicket, offer);
+            }
             return ResponseEntity.created(URI.create("/api/ticket/" + createdTicket.getId())).body(createdTicket);
         }
     }

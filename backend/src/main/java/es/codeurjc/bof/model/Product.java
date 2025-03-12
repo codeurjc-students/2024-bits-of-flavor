@@ -21,11 +21,11 @@ public class Product {
 	private Long id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Offer> offers;
 
     private String name;

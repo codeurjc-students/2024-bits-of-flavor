@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
 import es.codeurjc.bof.model.Ticket;
 import es.codeurjc.bof.model.User;
@@ -18,6 +19,12 @@ public class TicketService {
     
     public Ticket newTicket(User user, Product product, LocalDate date){
         Ticket ticket = new Ticket(user, product, date);
+        ticketRespository.save(ticket);
+        return ticket;
+    }
+
+    public Ticket setOffer(Ticket ticket, Offer offer){
+        ticket.setOffer(offer);
         ticketRespository.save(ticket);
         return ticket;
     }

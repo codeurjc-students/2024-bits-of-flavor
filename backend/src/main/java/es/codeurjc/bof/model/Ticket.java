@@ -20,6 +20,9 @@ public class Ticket {
     @ManyToOne
     private Product product;
 
+    @ManyToOne
+    private Offer offer;
+
     private LocalDate date;
 
     public Ticket(){}
@@ -61,4 +64,13 @@ public class Ticket {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
+    
 }

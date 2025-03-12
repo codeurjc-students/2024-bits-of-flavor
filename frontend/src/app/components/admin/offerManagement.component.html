@@ -28,13 +28,16 @@
               <th>Precio: </th>
               <th>Descuento: </th>
               <th>Fecha de valided: </th>
+              <th>Activa/Caducada: </th>
             </tr>
-            <tr  *ngFor="let offer of offers">
+            <tr *ngFor="let offer of offers">
                     <td> {{offer.name}} </td>
                     <td> {{offer.product.name}} </td>
                     <td> <del>{{offer.product.price}}</del> {{offer.newPrice}} </td>
                     <td> {{offer.discount}} % </td>
                     <td> {{offer.expDate}} </td>
+                    <td *ngIf="offer.active" class="active"> Activa </td>
+                    <td *ngIf="!offer.active" class="expired"> Caducada </td>
                     <td> <button (click)="deleteOffer(offer.id)"> Borrar </button> </td>
             </tr>
         </table>
