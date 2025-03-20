@@ -18,8 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import es.codeurjc.bof.security.jwt.JwtRequestFilter;
 import es.codeurjc.bof.security.jwt.UnauthorizedHandlerJwt;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
@@ -77,7 +75,6 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "api/ticket/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "api/ticket/**").hasAnyRole("ADMIN", "USER")
                         // PUBLIC ENDPOINTS
                         .anyRequest().permitAll());
 

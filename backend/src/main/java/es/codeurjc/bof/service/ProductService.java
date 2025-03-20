@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import es.codeurjc.bof.model.Product;
+import es.codeurjc.bof.model.Ticket;
 import es.codeurjc.bof.repository.ProductRepository;
 
 @Service
@@ -82,5 +82,9 @@ public class ProductService {
         } else {
             return null;
         }
+    }
+
+    public List<Product> getProductByTicket(List<Ticket> ticket_list) {
+        return productRepository.findByTicketsGroupedAndOrderedByCategory(ticket_list);
     }
 }

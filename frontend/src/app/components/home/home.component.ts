@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   }
 
   public loadProducts() {
-    this.productService.getAllProducts().subscribe(
+    this.productService.getRecommendedProducts().subscribe(
       (products: Product[]) => {
         this.products = products;
       }

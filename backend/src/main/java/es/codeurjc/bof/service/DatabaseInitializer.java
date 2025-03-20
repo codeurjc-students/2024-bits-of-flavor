@@ -12,14 +12,18 @@ import org.springframework.stereotype.Service;
 
 import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
+import es.codeurjc.bof.model.Ticket;
 import es.codeurjc.bof.model.User;
 import es.codeurjc.bof.repository.OfferRepository;
 import es.codeurjc.bof.repository.ProductRepository;
+import es.codeurjc.bof.repository.TicketRespository;
 import es.codeurjc.bof.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 
 @Service
 public class DatabaseInitializer {
+
+    private final TicketRespository ticketRespository;
     
     @Autowired
     private ProductRepository productRepository;
@@ -32,6 +36,10 @@ public class DatabaseInitializer {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    DatabaseInitializer(TicketRespository ticketRespository) {
+        this.ticketRespository = ticketRespository;
+    }
 
     @PostConstruct
     public void init() throws IOException {
@@ -114,7 +122,17 @@ public class DatabaseInitializer {
         offerRepository.save(offer1b);
         offerRepository.save(offer1c);
         offerRepository.save(offer1d);
+
+        Ticket ticket1 = new Ticket(user, product2, LocalDate.parse("2025-04-15"));
+        Ticket ticket2 = new Ticket(user, product2, LocalDate.parse("2025-04-15"));
+        Ticket ticket3 = new Ticket(user, product3, LocalDate.parse("2025-04-15"));
+        Ticket ticket4 = new Ticket(user, product4, LocalDate.parse("2025-04-15"));
+        ticketRespository.save(ticket1);
+        ticketRespository.save(ticket2);
+        ticketRespository.save(ticket3);
+        ticketRespository.save(ticket4);
     }
+
     public void setProductImage(Product product, String path) throws IOException{
         Resource image = new ClassPathResource(path);
         product.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));

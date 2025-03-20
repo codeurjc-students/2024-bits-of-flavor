@@ -2,8 +2,12 @@ package es.codeurjc.bof.controller;
 
 import java.io.IOException;
 import java.net.URI;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.codeurjc.bof.model.Product;
+import es.codeurjc.bof.model.Ticket;
+import es.codeurjc.bof.model.User;
 import es.codeurjc.bof.service.ProductService;
+import es.codeurjc.bof.service.TicketService;
+import es.codeurjc.bof.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +40,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/api/product")
 public class ProductRestController {
     
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private UserService userService;
+
     @Autowired
     private ProductService productService;
 
@@ -98,5 +113,31 @@ public class ProductRestController {
             return ResponseEntity.ok(deletedProduct);
         }
     }
+
+     @GetMapping("/recommend")
+    public Collection<Product> getMethodName(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            User user = userService.getUserByUsername(principal.getName());
+            List<Ticket> ticket_list = ticketService.getTicketByUser(user);
+            List<Product> product_list = productService.getProductByTicket(ticket_list);
+            Map<String, List<Product>> groupedByCategory = product_list.stream()
+                .collect(Collectors.groupingBy(Product::getCategory));
+
+            List<Product> sortedProducts = groupedByCategory.entrySet().stream()
+                .sorted((entry1, entry2) -> Integer.compare(entry2.getValue().size(), entry1.getValue().size())) // Orden descendente por tamaño
+                .flatMap(entry -> entry.getValue().stream())
+                .distinct()
+                .limit(4)
+                .collect(Collectors.toList());
+            
+            if (sortedProducts.isEmpty()){
+                return product_list.subList(0, 4);
+            }
+            return sortedProducts;
+        }
+        List<Product> product_list = productService.getAllProducts();
+        return product_list.subList(0, 4);
+    }   
     
 }

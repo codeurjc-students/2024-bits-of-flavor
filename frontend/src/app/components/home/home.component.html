@@ -1,7 +1,7 @@
 <div clas="home-container">
     <img src="assets/images/supermarket.jpg" class="home-img">
     <div class="offerts">
-        <h2> Productos Recomendados: </h2>
+        <h1 id="recommend"> Productos Recomendados: </h1>
         <ul>
             <li *ngFor = "let product of products">
                 <img *ngIf="product.active" src="/assets/images/special_offer.png" class="special_offer">

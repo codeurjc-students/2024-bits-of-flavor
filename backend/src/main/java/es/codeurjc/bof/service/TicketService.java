@@ -1,6 +1,7 @@
 package es.codeurjc.bof.service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class TicketService {
 
     @Autowired
     private TicketRespository ticketRespository;
+
+    public List<Ticket> getTicketByUser(User user){
+        return ticketRespository.findByUser(user);
+    }
     
     public Ticket newTicket(User user, Product product, LocalDate date){
         Ticket ticket = new Ticket(user, product, date);

@@ -119,3 +119,7 @@ button {
 }
 
 .add-button {background-color: rgb(200, 0, 0);}
+
+#recommend {
+    text-align: center;
+}
