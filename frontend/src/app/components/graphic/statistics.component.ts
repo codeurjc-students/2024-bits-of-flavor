@@ -1,4 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Chart } from "chart.js/auto";
+import { ProductService } from "../../service/product.service";
+import { Product } from "../../model/product.model";
 
 
 @Component({
@@ -7,24 +10,40 @@ import { Component } from "@angular/core";
     styleUrl: './statistics.component.css'
 })
 
-export class StatisticsComponent {
-    options = {
-        chart: {
-          type: 'line'
-        },
-        series: [{
-          name: 'sales',
-          data: [30,40,35,50,49,60,70,91,125]
-        }],
-        xaxis: {
-          categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-        }
-      }
-      
-    chart = new ApexCharts(document.querySelector("#chart"), this.options);
+export class StatisticsComponent implements OnInit {
 
-    constructor(){
-        this.chart.render();
+    constructor(private productService:ProductService) {
     }
-    
+
+    ngOnInit() {
+        this.loadData();
+    }
+
+    public loadData() {
+        this.productService.getAllProducts().subscribe(
+            (products: Product[]) => {
+                const data: { name: string; price: number }[] = [];
+        
+                products.forEach(product =>{
+                    data.push({name: product.name, price: product.ticketSize });
+                })
+                new Chart(
+                    "acquisitions",
+                    {
+                        type: 'bar',
+                        data: {
+                            labels: data.map(row => row.name),
+                            datasets: [
+                                {
+                                    label: 'Tickets in next 2 weeks:',
+                                    data: data.map(row => row.price)
+                                }
+                            ]
+                        }
+                    }
+                );
+            }
+        );
+    }
+
 }

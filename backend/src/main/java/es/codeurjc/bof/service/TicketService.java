@@ -19,7 +19,7 @@ public class TicketService {
     private TicketRespository ticketRespository;
 
     public List<Ticket> getTicketByUser(User user){
-        return ticketRespository.findByUser(user);
+        return ticketRespository.findByUserOrderByDate(user);
     }
     
     public Ticket newTicket(User user, Product product, LocalDate date){

@@ -72,5 +72,9 @@ public class Ticket {
     public void setOffer(Offer offer) {
         this.offer = offer;
     }
+
+    public boolean isActive(){
+        return date.isAfter(LocalDate.now());
+    }
     
 }

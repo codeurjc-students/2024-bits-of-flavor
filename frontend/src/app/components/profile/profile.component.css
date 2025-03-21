@@ -108,3 +108,9 @@ li {
     display: block;
     margin-bottom: 10px;
 }
+
+.expired {
+    color: red;
+    text-align: center;
+    width: 100%;
+}

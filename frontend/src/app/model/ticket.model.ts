@@ -8,6 +8,7 @@ export class Ticket {
     user: User;
     product: Product;
     offer: Offer;
+    active: boolean;
 
     constructor(){
         this.id = 0;
@@ -15,5 +16,13 @@ export class Ticket {
         this.user = new User();
         this.product = new Product();
         this.offer = new Offer();
+        this.active = false;
+    }
+
+    isWithinNextTwoWeeks(date: Date): boolean {
+        const today = new Date();
+        const twoWeeksLater = new Date(today);
+        twoWeeksLater.setDate(today.getDate() + 14);
+        return date >= today && date <= twoWeeksLater;
     }
 }

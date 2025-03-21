@@ -65,7 +65,7 @@ public class TicketRestController {
         if (principal != null) {
             User user = userService.getUserByUsername(principal.getName());
             if (user != null) {
-                return user.getTickets();
+                return ticketService.getTicketByUser(user);
             }
         }
         return null;

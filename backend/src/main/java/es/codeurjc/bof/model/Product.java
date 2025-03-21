@@ -1,6 +1,7 @@
 package es.codeurjc.bof.model;
 
 import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -167,5 +168,11 @@ public class Product {
 
     public boolean isActive(){
         return offers.stream().anyMatch(Offer::isActive);
+    }
+
+    public int getTicketSize(){
+        LocalDate today = LocalDate.now();
+        tickets.removeIf(ticket -> ticket.getDate().isBefore(today));
+        return tickets.size();
     }
 }

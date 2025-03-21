@@ -17,8 +17,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { OfferManagement } from './components/admin/offerManagement.component';
 import { StatisticsComponent } from './components/graphic/statistics.component';
 
-import ApexCharts from 'apexcharts';
-
 @NgModule({
  declarations: [AppComponent,
    HeaderComponent,

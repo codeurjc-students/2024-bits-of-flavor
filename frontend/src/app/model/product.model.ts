@@ -12,6 +12,7 @@ export class Product {
     carbo: number;
     category: string;
     active: boolean;
+    ticketSize: number;
 
     constructor() {
         this.id = 0;
@@ -25,5 +26,6 @@ export class Product {
         this.carbo = 0;
         this.category = "";
         this.active = false;
+        this.ticketSize = 0;
     }
 }

@@ -2,6 +2,9 @@ package es.codeurjc.bof.service;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Random;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,10 +108,16 @@ public class DatabaseInitializer {
         setProductImage(product10, "static/images/lomo-saltado-ternera.jpg");
         productRepository.save(product10);
 
-        //User sample
-        User user = new User("user", "user@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER");
-        setUserImage(user, "static/images/avatar1.jpg");
-        userRepository.save(user);
+        for (int i = 1; i <= 4; i++) {
+            String username = "bot" + i;
+            String email = "bot" + i + "@gmail.com";
+            String password = "botpass" + i;
+            String imagePath = "static/images/profile" + i + ".jpg";
+            
+            User user = new User(username, email, "123456789", passwordEncoder.encode(password), "USER");
+            setUserImage(user, imagePath);
+            userRepository.save(user);
+        }
 
         User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER", "ADMIN");
         setUserImage(admin, "static/images/avatar1.jpg");
@@ -123,14 +132,9 @@ public class DatabaseInitializer {
         offerRepository.save(offer1c);
         offerRepository.save(offer1d);
 
-        Ticket ticket1 = new Ticket(user, product2, LocalDate.parse("2025-04-15"));
-        Ticket ticket2 = new Ticket(user, product2, LocalDate.parse("2025-04-15"));
-        Ticket ticket3 = new Ticket(user, product3, LocalDate.parse("2025-04-15"));
-        Ticket ticket4 = new Ticket(user, product4, LocalDate.parse("2025-04-15"));
-        ticketRespository.save(ticket1);
-        ticketRespository.save(ticket2);
-        ticketRespository.save(ticket3);
-        ticketRespository.save(ticket4);
+        List<Product> productList = productRepository.findAll();
+        List<User> userList = userRepository.findAll();
+        generateTickets(userList, productList);
     }
 
     public void setProductImage(Product product, String path) throws IOException{
@@ -141,5 +145,29 @@ public class DatabaseInitializer {
     public void setUserImage(User user, String path) throws IOException {
         Resource image = new ClassPathResource(path);
         user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+    }
+
+    public void generateTickets(List<User> userList, List<Product> productList) {
+        Random random = new Random();
+        
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = today.minus(7, ChronoUnit.DAYS);
+        LocalDate endDate = today.plus(14, ChronoUnit.DAYS);
+
+        for (User user: userList) {
+            for (Product product: productList) {
+                if (random.nextBoolean()) {
+                    int numPurchases = random.nextInt(3) + 1;
+                    for (int i = 0; i < numPurchases; i++) {
+                        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+                        long randomDays = random.nextLong(daysBetween + 1);
+                        LocalDate randomDate = startDate.plusDays(randomDays);
+                
+                        Ticket ticket = new Ticket(user, product, randomDate);
+                        ticketRespository.save(ticket);
+                    }
+                }
+            }
+        }
     }
 }
