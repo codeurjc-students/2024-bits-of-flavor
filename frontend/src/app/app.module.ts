@@ -15,6 +15,9 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NewProduct } from './components/admin/newProduct.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OfferManagement } from './components/admin/offerManagement.component';
+import { StatisticsComponent } from './components/graphic/statistics.component';
+
+import ApexCharts from 'apexcharts';
 
 @NgModule({
  declarations: [AppComponent,
@@ -28,7 +31,8 @@ import { OfferManagement } from './components/admin/offerManagement.component';
    SignupComponent,
    NewProduct,
    FooterComponent,
-   OfferManagement],
+   OfferManagement,
+   StatisticsComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

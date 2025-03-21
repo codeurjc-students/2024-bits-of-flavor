@@ -25,6 +25,7 @@ import es.codeurjc.bof.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @RestController
 @RequestMapping("/api/ticket")
 public class TicketRestController {
@@ -69,5 +70,7 @@ public class TicketRestController {
         }
         return null;
     }
+    
+   
     
 }
