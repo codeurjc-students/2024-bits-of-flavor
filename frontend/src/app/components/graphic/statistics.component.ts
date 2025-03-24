@@ -36,7 +36,9 @@ export class StatisticsComponent implements OnInit {
                             datasets: [
                                 {
                                     label: 'Tickets in next 2 weeks:',
-                                    data: data.map(row => row.price)
+                                    data: data.map(row => row.price),
+                                    borderColor: 'black',
+                                    backgroundColor: 'red',
                                 }
                             ]
                         }

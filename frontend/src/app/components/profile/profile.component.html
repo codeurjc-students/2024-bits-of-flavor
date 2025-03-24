@@ -47,7 +47,9 @@
                         <button *ngIf="ticket.active" (click)="downloadTicket(ticket)"> Descargar PDF </button>
                         <p *ngIf="!ticket.active" class="expired"> Caducado </p>
                     </div>
+
                 </li>
             </ul>
+            <button *ngIf="hasMore" (click)="loadMore()">Más Resultados</button>
         </aside>
 </div>

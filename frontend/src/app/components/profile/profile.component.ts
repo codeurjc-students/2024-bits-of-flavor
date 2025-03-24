@@ -21,8 +21,8 @@ import jsPDF from "jspdf";
     editAttrUsername: boolean = false;
     editAttrEmail: boolean = false;
     editAttrPhoneNumber: boolean = false;
-
     tickets: Ticket[] = [];
+    hasMore: boolean = true;
 
     @ViewChild("file")
     file: any;
@@ -30,14 +30,25 @@ import jsPDF from "jspdf";
     constructor(private loginService: LoginService, private userService: UserService, private ticketService: TicketService){}
 
     ngOnInit() {
+        this.ticketService.resetPage();
         this.loadCurrentUser();
+        this.loadMore();
     }
 
     public loadCurrentUser(){
         this.user = this.loginService.getUser();
         this.imageSrc = "/api/user/" + this.user.id + "/image";
-        this.ticketService.getTicketsFromUser().subscribe(
-            (tickets: Ticket[]) => this.tickets = tickets
+    }
+
+    public loadMore(){
+        this.ticketService.getPaginatedTicketsFromUser().subscribe(
+            (tickets) => {
+                if (tickets.last) {
+                    this.hasMore = false; // Si trae menos de 10, no hay más datos
+                }
+                this.tickets = [...this.tickets, ...tickets.content];
+                this.ticketService.nextPage();
+            }
         );
     }
 
