@@ -45,6 +45,7 @@ class BofApplicationTests {
 		WebElement link = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Arroz de magro y setas")));
 		link.click();
 		WebElement text = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("product-name")));
+		Thread.sleep(1000);
 		assertTrue(text.getText().contains("Arroz de magro y setas"));
 	}
 
@@ -61,13 +62,14 @@ class BofApplicationTests {
 		driver.findElement(By.id("phoneNumber-input")).sendKeys("987654321");
 		driver.findElement(By.id("pasword-input")).sendKeys("pepinillo");
 		driver.findElement(By.className("sign-button")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
+
+		Thread.sleep(1000);
 		loginButton.click();
 		driver.findElement(By.id("username-input")).sendKeys("SeleniumTest");
 		driver.findElement(By.id("password-input")).sendKeys("pepinillo");
 		driver.findElement(By.className("login-button")).click();
 		
+		Thread.sleep(1000);
 		searchButton.click();
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Arroz de magro y setas"))).click();
@@ -75,6 +77,7 @@ class BofApplicationTests {
 		driver.findElement(By.id("date-input")).sendKeys("2024-12-16");
 		driver.findElement(By.className("accept-button")).click();
 
+		Thread.sleep(1000);
 		WebElement profileButton = driver.findElement(By.id("profileButton"));
 		profileButton.click();
 	}
@@ -103,18 +106,21 @@ class BofApplicationTests {
 		driver.findElement(By.id("carbo-input")).sendKeys("80");
 		driver.findElement(By.className("accept")).click();
 
+		Thread.sleep(1000);
 		searchButton.click();
 		WebElement link = wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Selenium Product")));
 		link.click();
 		WebElement text = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("product-name")));
 		assertTrue(text.getText().contains("Selenium Product"));
 
+		Thread.sleep(1000);
 		searchButton.click();
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("delete-Selenium Product"))).click();
 		wait.until(ExpectedConditions.alertIsPresent());
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 
+		Thread.sleep(1000);
 		searchButton.click();
 		List<WebElement> products = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("product-name")));
 		Boolean textFound = products.stream().anyMatch(product -> product.getText().contains("Selenium Product"));

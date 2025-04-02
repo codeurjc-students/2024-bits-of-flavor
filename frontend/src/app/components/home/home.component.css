@@ -23,6 +23,20 @@
     display: block;
 }
 
+.active {
+    text-decoration: line-through;
+    color: red;
+}
+
+.discount {
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    padding-left: 3px;
+    text-align: center;
+    margin-right: 10px;
+}
+
 ul {
     list-style-type: none;
     display: flex;
@@ -41,14 +55,15 @@ li {
     padding-bottom: 170px;
 }
 
-h2 {
-    margin-left:20px;
-}
-
 img {
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.special_offer {
+    width: 70%;
+    position: absolute;
 }
 
 .product-name {
@@ -58,6 +73,11 @@ img {
     width: 90%;
     margin: auto;
     display: block;
+}
+
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: inherit; /* no underline */
 }
 
 .product-price {
@@ -73,7 +93,7 @@ a:link {
     text-decoration: none;
 }
   
-  a:visited {
+a:visited {
     text-decoration: none;
 }
 
@@ -99,3 +119,7 @@ button {
 }
 
 .add-button {background-color: rgb(200, 0, 0);}
+
+#recommend {
+    text-align: center;
+}

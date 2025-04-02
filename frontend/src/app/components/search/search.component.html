@@ -2,10 +2,14 @@
     <main>
         <ul>
             <li *ngFor = "let product of filtredProducts">
+                <img *ngIf="product.active" src="/assets/images/special_offer.png" class="special_offer">
                 <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
                 <h2 class="product-name"><a routerLink ="/product/{{product.id}}"> {{product.name}} </a></h2>
                 <div class="button-container">
-                    <h2 class = "product-price"> {{product.price}} € </h2>
+                    <h2 class = "product-price"> <span *ngIf="product.active" class="discount"> {{getOffer(product.id)?.discount}} % </span>
+                        <span [class.active]="product.active"> {{product.price}} €</span>
+                    </h2>
+                    <h2 class="product-price"  *ngIf="product.active"> <span> {{getOffer(product.id)?.newPrice}} €</span></h2>
                     <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir </button>
                     @if (loginService.isAdmin()){
                         <button class="delete-button" (click)="deleteProduct(product.id)" id="delete-{{product.name}}"> Borrar </button>
@@ -31,6 +35,12 @@
             <input id="precioMin" type="number" [(ngModel)]="minPrice" (change)="filter()" />
             <label for="precioMax">Precio máximo:</label>
             <input id="precioMax" type="number" [(ngModel)]="maxPrice" (change)="filter()"/>
+        </div>
+        <div class="filter-elem">
+            <label>Productos en oferta</label>
+            <input type="radio" name = "filter" (change)="onActiveChange(null)">Todos
+            <input type="radio" value="true" name = "filter" (change)="onActiveChange(true)">Si
+            <input type="radio" value="false" name = "filter" (change)="onActiveChange(false)">No
         </div>
     </aside>
 </div>

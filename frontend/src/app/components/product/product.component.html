@@ -1,9 +1,16 @@
 <div class="product-container">
-    <img src="/api/product/{{product.id}}/image">
+    <div class="product-img">
+        <img *ngIf="product.active" src="/assets/images/special_offer.png" class="special_offer">
+        <img src="/api/product/{{product.id}}/image">
+    </div>
 
     <div class="product">
         <h1 id = "product-name"> {{product.name}} <span> ({{product.weight}} g) </span></h1>
-        <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir - {{product.price}} €</button>
+        <h2 class = "product-price"> <span *ngIf="product.active" class="discount"> {{offer.discount}} % </span>
+            <span [class.active]="product.active"> {{product.price}} €</span>
+        </h2>
+        <h2 class="product-price"  *ngIf="product.active"> <span> {{offer.newPrice}} €</span></h2>
+        <button class="add-button" routerLink="/ticket/{{product.id}}"> Añadir </button>
         <h2> Ingredientes </h2>
         <p> {{product.info}}</p>
         <h2> Informacion nutricional </h2>

@@ -44,9 +44,12 @@
                     <div class="button-container">
                         <p class = "date"> {{ticket.date}} </p>
                         <p class = "date"> URJC </p>
-                        <button> Descargar PDF </button>
+                        <button *ngIf="ticket.active" (click)="downloadTicket(ticket)"> Descargar PDF </button>
+                        <p *ngIf="!ticket.active" class="expired"> Caducado </p>
                     </div>
+
                 </li>
             </ul>
+            <button *ngIf="hasMore" (click)="loadMore()">Más Resultados</button>
         </aside>
 </div>

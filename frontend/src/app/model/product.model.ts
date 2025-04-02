@@ -1,3 +1,5 @@
+import { Offer } from "./offer.model";
+
 export class Product {
     id: number;
     name: string;
@@ -9,6 +11,8 @@ export class Product {
     fat: number;
     carbo: number;
     category: string;
+    active: boolean;
+    ticketSize: number;
 
     constructor() {
         this.id = 0;
@@ -21,5 +25,7 @@ export class Product {
         this.fat = 0;
         this.carbo = 0;
         this.category = "";
+        this.active = false;
+        this.ticketSize = 0;
     }
 }

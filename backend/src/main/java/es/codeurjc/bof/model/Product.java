@@ -1,6 +1,7 @@
 package es.codeurjc.bof.model;
 
 import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,8 +22,12 @@ public class Product {
 	private Long id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Offer> offers;
 
     private String name;
 
@@ -43,7 +48,7 @@ public class Product {
     @JsonIgnore
     private Blob imageFile;
 
-    public Product() { }
+    public Product() {}
 
     public Product(String name, String info, float weight, float price, float cal, float protein, float carbo, float fat, String category) {
         this.name = name;
@@ -153,5 +158,27 @@ public class Product {
         this.category = category;
     }
 
+    public List<Offer> getOffers() {
+        return offers;
+    }
 
+    public void setOffers(List<Offer> offers) {
+        this.offers = offers;
+    }
+
+    public boolean isActive(){
+        if (this.offers == null){
+            return false;
+        }
+        return offers.stream().anyMatch(Offer::isActive);
+    }
+
+    public int getTicketSize(){
+        if (this.tickets == null) {
+            return 0;
+        }
+        LocalDate today = LocalDate.now();
+        tickets.removeIf(ticket -> ticket.getDate().isBefore(today));
+        return tickets.size();
+    }
 }

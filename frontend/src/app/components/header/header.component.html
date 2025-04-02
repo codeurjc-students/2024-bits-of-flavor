@@ -4,6 +4,7 @@
   <li><a routerLink="/search" id="searchButton">Buscar</a></li>
   @if (loginService.isAdmin()){
     <li><a routerLink="/newProduct" id="newProductButton">Añadir Producto</a></li>
+    <li><a routerLink="/offerManagement" id="offerManagementButton">Gestion de Ofertas</a></li>
   }
   @if (!loginService.isLogged()){
   <li><a routerLink="/login" id="loginButton">Iniciar Sesion</a></li>
@@ -13,4 +14,5 @@
   <li><a (click)="logout()">Cerrar Sesion</a></li>
   <li><a routerLink="/profile" id="profileButton">Profile</a> </li>
   }
+  <li><a routerLink="/statistics" id="statistics">Estadísticas</a></li>
 </ul>

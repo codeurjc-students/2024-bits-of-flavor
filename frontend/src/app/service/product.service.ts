@@ -16,6 +16,10 @@ export class ProductService {
         return this.httpClient.get(BASE_URL) as Observable<Product[]>;
     }
 
+    getRecommendedProducts(): Observable<Product[]> {
+        return this.httpClient.get(BASE_URL + "recommend") as Observable<Product[]>;
+    }
+
     getProduct(id: number): Observable<Product> {
         return this.httpClient.get(BASE_URL + id) as Observable<Product>;
     }

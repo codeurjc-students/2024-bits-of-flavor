@@ -1,6 +1,10 @@
 package es.codeurjc.bof.service;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Random;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +13,20 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import es.codeurjc.bof.model.Offer;
 import es.codeurjc.bof.model.Product;
+import es.codeurjc.bof.model.Ticket;
 import es.codeurjc.bof.model.User;
+import es.codeurjc.bof.repository.OfferRepository;
 import es.codeurjc.bof.repository.ProductRepository;
+import es.codeurjc.bof.repository.TicketRespository;
 import es.codeurjc.bof.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 
 @Service
 public class DatabaseInitializer {
+
+    private final TicketRespository ticketRespository;
     
     @Autowired
     private ProductRepository productRepository;
@@ -25,7 +35,14 @@ public class DatabaseInitializer {
     private UserRepository userRepository;
 
     @Autowired
+    private OfferRepository offerRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
+    DatabaseInitializer(TicketRespository ticketRespository) {
+        this.ticketRespository = ticketRespository;
+    }
 
     @PostConstruct
     public void init() throws IOException {
@@ -91,14 +108,33 @@ public class DatabaseInitializer {
         setProductImage(product10, "static/images/lomo-saltado-ternera.jpg");
         productRepository.save(product10);
 
-        //User sample
-        User user = new User("user", "user@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER");
-        setUserImage(user, "static/images/avatar1.jpg");
-        userRepository.save(user);
+        for (int i = 1; i <= 4; i++) {
+            String username = "bot" + i;
+            String email = "bot" + i + "@gmail.com";
+            String password = "botpass" + i;
+            String imagePath = "static/images/profile" + i + ".jpg";
+            
+            User user = new User(username, email, "123456789", passwordEncoder.encode(password), "USER");
+            setUserImage(user, imagePath);
+            userRepository.save(user);
+        }
 
         User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER", "ADMIN");
         setUserImage(admin, "static/images/avatar1.jpg");
         userRepository.save(admin);
+
+        Offer offer1a = new Offer(product1, "Diciembre 2024", LocalDate.parse("2024-12-15"), 50, 4.07);
+        Offer offer1b = new Offer(product1, "Enero 2025", LocalDate.parse("2025-01-15"), 50, 4.07);
+        Offer offer1c = new Offer(product1, "Febrero 2025", LocalDate.parse("2025-02-15"), 50, 4.07);
+        Offer offer1d = new Offer(product1, "Abril 2025", LocalDate.parse("2025-04-15"), 50, 4.07);
+        offerRepository.save(offer1a);
+        offerRepository.save(offer1b);
+        offerRepository.save(offer1c);
+        offerRepository.save(offer1d);
+
+        List<Product> productList = productRepository.findAll();
+        List<User> userList = userRepository.findAll();
+        generateTickets(userList, productList);
     }
 
     public void setProductImage(Product product, String path) throws IOException{
@@ -109,5 +145,29 @@ public class DatabaseInitializer {
     public void setUserImage(User user, String path) throws IOException {
         Resource image = new ClassPathResource(path);
         user.setImageFile(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
+    }
+
+    public void generateTickets(List<User> userList, List<Product> productList) {
+        Random random = new Random();
+        
+        LocalDate today = LocalDate.now();
+        LocalDate startDate = today.minus(7, ChronoUnit.DAYS);
+        LocalDate endDate = today.plus(14, ChronoUnit.DAYS);
+
+        for (User user: userList) {
+            for (Product product: productList) {
+                if (random.nextBoolean()) {
+                    int numPurchases = random.nextInt(3) + 1;
+                    for (int i = 0; i < numPurchases; i++) {
+                        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+                        long randomDays = random.nextLong(daysBetween + 1);
+                        LocalDate randomDate = startDate.plusDays(randomDays);
+                
+                        Ticket ticket = new Ticket(user, product, randomDate);
+                        ticketRespository.save(ticket);
+                    }
+                }
+            }
+        }
     }
 }
