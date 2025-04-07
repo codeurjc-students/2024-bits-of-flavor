@@ -2,7 +2,7 @@
 services:
   java_app:
     container_name: java_app
-    image: jperezsa2020/java_app:1.0
+    image: jperezsa2020/java_app:3.0
     ports:
       - 8443:8443
     environment:

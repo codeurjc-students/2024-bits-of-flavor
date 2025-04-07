@@ -9,6 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NewProduct } from './components/admin/newProduct.component';
 import { OfferManagement } from './components/admin/offerManagement.component';
 import { StatisticsComponent } from './components/graphic/statistics.component';
+import { ErrorComponent } from './components/error/error.component';
 
 const appRoutes: Routes = [
  { path: 'home', component: HomeComponent},
@@ -21,7 +22,9 @@ const appRoutes: Routes = [
  { path: 'signup', component: SignupComponent},
  { path: 'newProduct', component: NewProduct},
  { path: 'offerManagement', component: OfferManagement},
- { path: 'statistics', component: StatisticsComponent}
+ { path: 'statistics', component: StatisticsComponent},
+ { path: 'error', component: ErrorComponent},
+ { path: '**', redirectTo: 'error', pathMatch: 'full'}
 ]
 
 export const routing = RouterModule.forRoot(appRoutes)

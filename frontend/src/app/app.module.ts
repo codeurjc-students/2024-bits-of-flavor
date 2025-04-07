@@ -16,6 +16,7 @@ import { NewProduct } from './components/admin/newProduct.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OfferManagement } from './components/admin/offerManagement.component';
 import { StatisticsComponent } from './components/graphic/statistics.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
  declarations: [AppComponent,
@@ -30,7 +31,8 @@ import { StatisticsComponent } from './components/graphic/statistics.component';
    NewProduct,
    FooterComponent,
    OfferManagement,
-   StatisticsComponent],
+   StatisticsComponent,
+   ErrorComponent],
  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
  bootstrap: [AppComponent]
 })

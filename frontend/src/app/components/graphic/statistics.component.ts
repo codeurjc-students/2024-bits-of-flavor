@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Chart } from "chart.js/auto";
 import { ProductService } from "../../service/product.service";
 import { Product } from "../../model/product.model";
+import { Router } from "@angular/router";
+import { HttpErrorResponse } from "@angular/common/http";
 
 
 @Component({
@@ -12,7 +14,7 @@ import { Product } from "../../model/product.model";
 
 export class StatisticsComponent implements OnInit {
 
-    constructor(private productService:ProductService) {
+    constructor(private productService: ProductService, private router: Router) {
     }
 
     ngOnInit() {
@@ -20,12 +22,12 @@ export class StatisticsComponent implements OnInit {
     }
 
     public loadData() {
-        this.productService.getAllProducts().subscribe(
-            (products: Product[]) => {
+        this.productService.getAllProducts().subscribe({
+            next: (products: Product[]) => {
                 const data: { name: string; price: number }[] = [];
-        
-                products.forEach(product =>{
-                    data.push({name: product.name, price: product.ticketSize });
+
+                products.forEach(product => {
+                    data.push({ name: product.name, price: product.ticketSize });
                 })
                 new Chart(
                     "acquisitions",
@@ -44,8 +46,12 @@ export class StatisticsComponent implements OnInit {
                         }
                     }
                 );
+            },
+            error: (e: HttpErrorResponse) => {
+                console.log(e);
+                this.router.navigate(["/error"]);
             }
-        );
+    });
     }
 
 }

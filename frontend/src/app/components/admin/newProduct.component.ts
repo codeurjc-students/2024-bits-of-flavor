@@ -2,6 +2,7 @@ import { Component, ViewChild } from "@angular/core";
 import { Product } from "../../model/product.model";
 import { ProductService } from "../../service/product.service";
 import { Router } from "@angular/router";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: 'app-new-product',
@@ -17,16 +18,27 @@ export class NewProduct {
     @ViewChild("file")
     file: any;
 
-    constructor(private productService: ProductService, private router: Router){}
+    constructor(private productService: ProductService, private router: Router){
+        this.product.weight = null;
+        this.product.price = null;
+        this.product.cal = null;
+        this.product.protein = null;
+        this.product.carbo = null;
+        this.product.fat = null;
+    }
 
     submitNewProductForm(){
         if (this.product.name != "" && this.product.weight != 0 && this.product.price != 0){
-            this.productService.newProduct(this.product).subscribe(
-                (product: Product) => {
+            this.productService.newProduct(this.product).subscribe({
+                next: (product: Product) => {
                     this.updateImage(product);
                     this.router.navigate(["/"]);
+                },
+                error: (e: HttpErrorResponse) => {
+                    console.log(e);
+                    alert("ERROR: NO se ha podido añadir el producto");
                 }
-            );
+        });
         }
     }
 

@@ -4,6 +4,7 @@ import { Product } from "../../model/product.model";
 import { ProductService } from "../../service/product.service";
 import { OfferService } from "../../service/offer.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-offer-management',
@@ -20,7 +21,7 @@ export class OfferManagement implements OnInit{
 
     tomorrow = new Date();
 
-    constructor(private offerService: OfferService, private productService: ProductService){}
+    constructor(private offerService: OfferService, private productService: ProductService, private router: Router){}
 
     ngOnInit(){
         this.tomorrow.setDate(this.tomorrow.getDate() + 1);
@@ -31,19 +32,27 @@ export class OfferManagement implements OnInit{
       
     public loadProducts() {
         const today = new Date();
-        this.productService.getAllProducts().subscribe(
-          (products: Product[]) => {
+        this.productService.getAllProducts().subscribe({
+          next: (products: Product[]) => {
             this.products = products.filter(product => !product.active);
-          }
-        );
+          },
+          error: (e: HttpErrorResponse) => {
+            console.log(e);
+            this.router.navigate(["/error"]);
+        }
+    });
     }
 
     public loadOffers() {
-        this.offerService.getAllOffers().subscribe(
-            (offers: Offer[]) => {
+        this.offerService.getAllOffers().subscribe({
+            next: (offers: Offer[]) => {
                 this.offers = offers;
+            },
+            error: (e: HttpErrorResponse) => {
+                console.log(e);
+                this.router.navigate(["/error"]);
             }
-        )
+    });
     }
 
 
@@ -56,7 +65,10 @@ export class OfferManagement implements OnInit{
                     this.loadOffers();
                     this.loadProducts();
                 },
-                error: (e: HttpErrorResponse) => console.log(e)
+                error: (e: HttpErrorResponse) => {
+                    console.log(e);
+                    alert("ERROR: NO se ha podido añadir la oferta")
+                }
         });
         }
     }
@@ -90,7 +102,10 @@ export class OfferManagement implements OnInit{
                     this.loadOffers();
                     this.loadProducts();
                 },
-                error: (e: HttpErrorResponse) => console.log(e)
+                error: (e: HttpErrorResponse) => {
+                    console.log(e);
+                    alert('ERROR: NO se ha podido borrar la oferta');
+                }
             })
         }
     }
