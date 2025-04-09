@@ -4,12 +4,12 @@ export class Product {
     id: number;
     name: string;
     info: string;
-    weight: number;
-    price: number;
-    cal: number;
-    protein: number;
-    fat: number;
-    carbo: number;
+    weight: number | null;
+    price: number | null;
+    cal: number | null;
+    protein: number | null;
+    fat: number | null;
+    carbo: number | null;
     category: string;
     active: boolean;
     ticketSize: number;

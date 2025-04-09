@@ -120,6 +120,10 @@ public class ProductRestController {
         if (principal != null) {
             User user = userService.getUserByUsername(principal.getName());
             List<Ticket> ticket_list = ticketService.getTicketByUser(user);
+            if (ticket_list.isEmpty()){
+                List<Product> product_list = productService.getAllProducts();
+                return product_list.subList(0, 5);
+            }
             List<Product> product_list = productService.getProductByTicket(ticket_list);
             Map<String, List<Product>> groupedByCategory = product_list.stream()
                 .collect(Collectors.groupingBy(Product::getCategory));
@@ -128,16 +132,16 @@ public class ProductRestController {
                 .sorted((entry1, entry2) -> Integer.compare(entry2.getValue().size(), entry1.getValue().size())) // Orden descendente por tamaño
                 .flatMap(entry -> entry.getValue().stream())
                 .distinct()
-                .limit(4)
+                .limit(5)
                 .collect(Collectors.toList());
             
             if (sortedProducts.isEmpty()){
-                return product_list.subList(0, 4);
+                return product_list.subList(0, 5);
             }
             return sortedProducts;
         }
         List<Product> product_list = productService.getAllProducts();
-        return product_list.subList(0, 4);
+        return product_list.subList(0, 5);
     }   
     
 }

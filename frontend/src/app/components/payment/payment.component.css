@@ -95,3 +95,17 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #ffffff;
 }
+
+.active {
+    text-decoration: line-through;
+    color: red;
+}
+
+.discount {
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    padding-left: 3px;
+    text-align: center;
+    margin-right: 10px;
+}

@@ -1,9 +1,27 @@
 <div clas="home-container">
-    <img src="assets/images/supermarket.jpg" class="home-img">
     <div class="offerts">
+        <ul>
+            <li *ngFor = "let offer of subListOffers" class="offer">
+                <img *ngIf="offer.active" src="/assets/images/special_offer.png" class="special_offer">
+                <a routerLink ="/product/{{offer.product.id}}"> <img src="/api/product/{{offer.product.id}}/image"> </a>
+                <h2 class="product-name"><a routerLink ="/product/{{offer.product.id}}"> {{offer.product.name}} </a></h2>
+                <div class="button-container">
+                    <h2 class = "product-price"> <span *ngIf="offer.product.active" class="discount"> {{offer.discount}} % </span>
+                        <span [class.active]="offer.active"> {{offer.product.price}} €</span>
+                    </h2>
+                    <h2 class="product-price"  *ngIf="offer.product.active"> <span> {{offer.newPrice}} €</span></h2>
+                    <button class="add-button" routerLink="/ticket/{{offer.product.id}}"> Añadir </button>
+                </div>
+            </li>
+        </ul>
+        <button *ngIf="hasPrev" (click)="loadPrev()" class="ajaxPrev"><img src="/assets/images/left-arrow.png"></button>
+        <button *ngIf="hasNext" (click)="loadNext()" class="ajaxNext"><img src="/assets/images/right-arrow.png"></button>
+    </div>
+    
+    <div class="recommendedProducts">
         <h1 id="recommend"> Productos Recomendados: </h1>
         <ul>
-            <li *ngFor = "let product of products">
+            <li *ngFor = "let product of products" class="product">
                 <img *ngIf="product.active" src="/assets/images/special_offer.png" class="special_offer">
                 <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
                 <h2 class="product-name"><a routerLink ="/product/{{product.id}}"> {{product.name}} </a></h2>

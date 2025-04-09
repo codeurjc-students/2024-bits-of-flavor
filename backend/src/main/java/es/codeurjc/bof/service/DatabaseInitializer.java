@@ -123,18 +123,22 @@ public class DatabaseInitializer {
         setUserImage(admin, "static/images/avatar1.jpg");
         userRepository.save(admin);
 
-        Offer offer1a = new Offer(product1, "Diciembre 2024", LocalDate.parse("2024-12-15"), 50, 4.07);
-        Offer offer1b = new Offer(product1, "Enero 2025", LocalDate.parse("2025-01-15"), 50, 4.07);
-        Offer offer1c = new Offer(product1, "Febrero 2025", LocalDate.parse("2025-02-15"), 50, 4.07);
-        Offer offer1d = new Offer(product1, "Abril 2025", LocalDate.parse("2025-04-15"), 50, 4.07);
-        offerRepository.save(offer1a);
-        offerRepository.save(offer1b);
-        offerRepository.save(offer1c);
-        offerRepository.save(offer1d);
-
         List<Product> productList = productRepository.findAll();
         List<User> userList = userRepository.findAll();
         generateTickets(userList, productList);
+        for (int i = 0; i < 6; i++) {
+            Product product = productList.get(i);
+            Offer offer1 = new Offer(product, "Invierno 2024", LocalDate.parse("2024-12-15"), 30, 
+            (Math.round(product.getPrice() * 0.7 * 100.0) / 100.0));
+            Offer offer2 = new Offer(product, "Primavera 2025", LocalDate.parse("2025-03-15"), 30, 
+            (Math.round(product.getPrice() * 0.7 * 100.0) / 100.0));
+            Offer offer3 = new Offer(product, "Hot Sale", LocalDate.now().plus(15, ChronoUnit.DAYS), 50, 
+            (Math.round(product.getPrice() * 0.5 * 100.0) / 100.0));
+            offerRepository.save(offer1);
+            offerRepository.save(offer2);
+            offerRepository.save(offer3);
+        }
+
     }
 
     public void setProductImage(Product product, String path) throws IOException{

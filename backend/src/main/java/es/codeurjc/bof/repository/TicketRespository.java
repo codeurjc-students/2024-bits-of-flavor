@@ -17,4 +17,6 @@ public interface TicketRespository extends JpaRepository<Ticket, Long>{
 
     @Query("SELECT t FROM Ticket t WHERE t.user = :user ORDER BY t.date DESC")
     Page<Ticket> findPageByUserOrderByDate(User user, Pageable pageable);
+
+    Page<Ticket> findAllByOrderByDateDesc(Pageable pageable);
 }

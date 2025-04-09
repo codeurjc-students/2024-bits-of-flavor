@@ -72,9 +72,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "api/product/**").hasAnyRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
-
-                        .requestMatchers(HttpMethod.GET, "api/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.POST, "api/ticket/**").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "api/ticket/**").hasAnyRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.POST, "api/offers/**").hasAnyRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "api/offers/**").hasAnyRole("ADMIN")
                         // PUBLIC ENDPOINTS
                         .anyRequest().permitAll());
 
@@ -104,10 +106,15 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(authorize -> authorize
+                // PRIVATE ENDPOINTS
+                        .requestMatchers("/new/ticket/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/new/profile").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/new/newProduct").hasAnyRole("ADMIN")
+                        .requestMatchers("/new/offerManagement").hasAnyRole("ADMIN")
                         // Public PAGES
                         .anyRequest().permitAll())
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
+                        .loginPage("/new/login")
                         .failureUrl("/error")
                         .defaultSuccessUrl("/")
                         .permitAll())

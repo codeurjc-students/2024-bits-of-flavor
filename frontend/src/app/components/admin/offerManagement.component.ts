@@ -4,6 +4,7 @@ import { Product } from "../../model/product.model";
 import { ProductService } from "../../service/product.service";
 import { OfferService } from "../../service/offer.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-offer-management',
@@ -19,33 +20,47 @@ export class OfferManagement implements OnInit{
     public productId: number = 0;
 
     tomorrow = new Date();
+    public hasMore: boolean = true;
 
-    constructor(private offerService: OfferService, private productService: ProductService){}
+    constructor(private offerService: OfferService, private productService: ProductService, private router: Router){}
 
     ngOnInit(){
         this.tomorrow.setDate(this.tomorrow.getDate() + 1);
         this.tomorrow.setHours(0, 0, 0, 0);
-        this.loadOffers();
+        this.offerService.resetPage();
+        this.offerService.setLimit(10);
+        this.loadMore();
         this.loadProducts();  
     }
       
     public loadProducts() {
         const today = new Date();
-        this.productService.getAllProducts().subscribe(
-          (products: Product[]) => {
+        this.productService.getAllProducts().subscribe({
+          next: (products: Product[]) => {
             this.products = products.filter(product => !product.active);
-          }
-        );
+          },
+          error: (e: HttpErrorResponse) => {
+            console.log(e);
+            this.router.navigate(["/error"]);
+        }
+    });
     }
 
-    public loadOffers() {
-        this.offerService.getAllOffers().subscribe(
-            (offers: Offer[]) => {
-                this.offers = offers;
+    public loadMore() {
+        this.offerService.getPaginatedOffers(false).subscribe({
+          next: (offers) => {
+            if (offers.last) {
+              this.hasMore = false;
             }
-        )
-    }
-
+            this.offerService.nextPage();
+            this.offers = [...this.offers, ...offers.content];
+          },
+          error: (e: HttpErrorResponse) => {
+            console.log(e);
+            this.router.navigate(["/error"]);
+          }
+        });
+      }
 
     public addOffer(){
         if(this.checkFields()){
@@ -53,10 +68,16 @@ export class OfferManagement implements OnInit{
                 next: (offer: Offer) => {
                     console.log(offer);
                     this.productId = 0;
-                    this.loadOffers();
+                    this.offerService.resetPage();
+                    this.hasMore = true;
+                    this.offers = [];
+                    this.loadMore();
                     this.loadProducts();
                 },
-                error: (e: HttpErrorResponse) => console.log(e)
+                error: (e: HttpErrorResponse) => {
+                    console.log(e);
+                    alert("ERROR: NO se ha podido añadir la oferta")
+                }
         });
         }
     }
@@ -87,10 +108,13 @@ export class OfferManagement implements OnInit{
             this.offerService.deleteOffer(id).subscribe({
                 next: () => {
                     alert('Oferta borrada con exito');
-                    this.loadOffers();
+                    this.offers = this.offers.filter(offer => offer.id !== id);
                     this.loadProducts();
                 },
-                error: (e: HttpErrorResponse) => console.log(e)
+                error: (e: HttpErrorResponse) => {
+                    console.log(e);
+                    alert('ERROR: NO se ha podido borrar la oferta');
+                }
             })
         }
     }

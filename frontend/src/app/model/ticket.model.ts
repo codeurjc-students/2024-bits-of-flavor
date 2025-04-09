@@ -9,6 +9,7 @@ export class Ticket {
     product: Product;
     offer: Offer;
     active: boolean;
+    claimed: boolean;
 
     constructor(){
         this.id = 0;
@@ -17,6 +18,7 @@ export class Ticket {
         this.product = new Product();
         this.offer = new Offer();
         this.active = false;
+        this.claimed = false;
     }
 
     isWithinNextTwoWeeks(date: Date): boolean {

@@ -1,8 +1,11 @@
 package es.codeurjc.bof.service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,14 @@ public class OfferService {
 
     public Collection<Offer> getAllOffers () {
         return this.offerRepository.findAll();
+    }
+
+    public Page<Offer> getPageableOffers (Pageable pageable) {
+        return offerRepository.findAllByOrderByExpDateDesc(pageable);
+    }
+
+    public Page<Offer> getActivePageableOffers (Pageable pageable) {
+        return offerRepository.findByExpDateAfter(LocalDate.now(), pageable);
     }
 
     public Offer getOfferByProduct(Product product) {

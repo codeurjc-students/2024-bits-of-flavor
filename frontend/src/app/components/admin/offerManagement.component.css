@@ -58,10 +58,29 @@ tr:nth-child(odd) {
     background-color: #ffffff;
 }
 
+.offer{
+    text-decoration: line-through;
+}
+
 .active {
     color: green;
 }
 
 .expired {
     color: red;
+}
+
+.ajax {
+    border: 3px solid black;
+    border-radius: 10px;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    display: block;
+    background-color: rgb(200, 0, 0);
 }

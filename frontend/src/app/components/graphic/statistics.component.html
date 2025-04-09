@@ -1,1 +1,28 @@
 <div class="statistics-container"><canvas id="acquisitions"></canvas></div>
+@if (loginService.isAdmin()) {
+<div>
+    <table>
+        <tr>
+            <th>Usuario: </th>
+            <th>Producto: </th>
+            <th>Precio: </th>
+            <th>Descuento: </th>
+            <th>Fecha de valided: </th>
+            <th>Activa/Caducada: </th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let ticket of tickets">
+            <td> {{ticket.user.username}} </td>
+            <td> {{ticket.product.name}} </td>
+            <td> <span [class.offer]="ticket.offer"> {{ticket.product.price}} </span> <span *ngIf="ticket.offer">{{ticket.offer.newPrice}}</span> € </td>
+            <td> <span *ngIf="ticket.offer">{{ticket.offer.discount}} %</span></td>
+            <td> {{ticket.date}} </td>
+            <td *ngIf="ticket.active && !ticket.claimed" class="active"> Activa </td>
+            <td *ngIf="ticket.active && ticket.claimed" class="claimed"> Recogido </td>
+            <td *ngIf="!ticket.active" class="expired"> Caducada </td>
+            <td> <button (click)="claimTicket(ticket)" *ngIf="ticket.active"> Recoger </button> </td>
+        </tr>
+    </table>
+    <button *ngIf="hasMore" (click)="loadMore()" class="ajax">Más Resultados</button>
+</div>
+}
