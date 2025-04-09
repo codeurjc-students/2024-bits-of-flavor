@@ -41,6 +41,6 @@
                     <td> <button (click)="deleteOffer(offer.id)"> Borrar </button> </td>
             </tr>
         </table>
-
+        <button *ngIf="hasMore" (click)="loadMore()" class="ajax">Más Resultados</button>
     </main>
 </div>

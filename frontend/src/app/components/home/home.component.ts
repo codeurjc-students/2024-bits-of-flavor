@@ -15,12 +15,18 @@ export class HomeComponent implements OnInit {
 
   public products: Product[] = [];
   public offers: Offer[] = [];
+  public subListOffers: Offer[] = [];
+  public hasNext: boolean = true;
+  public hasPrev: boolean = true;
 
   constructor(private productService: ProductService, private offerService: OfferService, private router: Router) { }
 
   ngOnInit() {
+    this.offerService.resetPage();
+    this.offerService.setLimit(3);
     this.loadProducts();
     this.loadActiveOffers();
+    this.loadNext();
   }
 
   public loadProducts() {
@@ -41,6 +47,48 @@ export class HomeComponent implements OnInit {
         this.offers = offers.filter(offer => offer.active);
       }
     )
+  }
+
+  public loadNext() {
+    this.offerService.getPaginatedOffers(true).subscribe({
+      next: (offers) => {
+        this.hasPrev = true;
+        if (offers.first) {
+          this.hasPrev = false;
+        }
+        if (offers.last) {
+          this.hasNext = false;
+          this.offerService.prevPage();
+        }
+        this.offerService.nextPage();
+        this.subListOffers = offers.content;
+      },
+      error: (e: HttpErrorResponse) => {
+        console.log(e);
+        this.router.navigate(["/error"]);
+      }
+    });
+  }
+
+  public loadPrev() {
+    this.offerService.prevPage();
+    this.offerService.getPaginatedOffers(true).subscribe({
+      next: (offers) => {
+        this.hasNext = true;
+        if (offers.first) {
+          this.hasPrev = false;
+          this.offerService.nextPage();
+        }
+        if (offers.last) {
+          this.hasNext = false;
+        }
+        this.subListOffers = offers.content;
+      },
+      error: (e: HttpErrorResponse) => {
+        console.log(e);
+        this.router.navigate(["/error"]);
+      }
+    });
   }
 
   public getOffer(productId: number) {

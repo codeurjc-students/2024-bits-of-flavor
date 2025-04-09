@@ -4,9 +4,12 @@ import java.net.URI;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.codeurjc.bof.model.Offer;
@@ -35,6 +38,18 @@ public class OfferRestController {
     public Collection<Offer> getAllOffers() {
         return offerService.getAllOffers();
     }
+
+    @GetMapping("/page")
+    public Page<Offer> getAllOffers(@RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size,
+                                        @RequestParam(defaultValue = "false") boolean active){
+        if(active){
+            return offerService.getActivePageableOffers(PageRequest.of(page, size)); 
+        } else {
+            return offerService.getPageableOffers(PageRequest.of(page, size));
+        }
+        
+    }    
 
     @GetMapping("/{productId}")
     public ResponseEntity<Offer> getOfferByProduct(@PathVariable Long productId) {

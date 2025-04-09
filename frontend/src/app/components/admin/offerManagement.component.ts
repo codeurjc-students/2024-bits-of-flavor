@@ -20,13 +20,16 @@ export class OfferManagement implements OnInit{
     public productId: number = 0;
 
     tomorrow = new Date();
+    public hasMore: boolean = true;
 
     constructor(private offerService: OfferService, private productService: ProductService, private router: Router){}
 
     ngOnInit(){
         this.tomorrow.setDate(this.tomorrow.getDate() + 1);
         this.tomorrow.setHours(0, 0, 0, 0);
-        this.loadOffers();
+        this.offerService.resetPage();
+        this.offerService.setLimit(10);
+        this.loadMore();
         this.loadProducts();  
     }
       
@@ -43,18 +46,21 @@ export class OfferManagement implements OnInit{
     });
     }
 
-    public loadOffers() {
-        this.offerService.getAllOffers().subscribe({
-            next: (offers: Offer[]) => {
-                this.offers = offers;
-            },
-            error: (e: HttpErrorResponse) => {
-                console.log(e);
-                this.router.navigate(["/error"]);
+    public loadMore() {
+        this.offerService.getPaginatedOffers(false).subscribe({
+          next: (offers) => {
+            if (offers.last) {
+              this.hasMore = false;
             }
-    });
-    }
-
+            this.offerService.nextPage();
+            this.offers = [...this.offers, ...offers.content];
+          },
+          error: (e: HttpErrorResponse) => {
+            console.log(e);
+            this.router.navigate(["/error"]);
+          }
+        });
+      }
 
     public addOffer(){
         if(this.checkFields()){
@@ -62,7 +68,10 @@ export class OfferManagement implements OnInit{
                 next: (offer: Offer) => {
                     console.log(offer);
                     this.productId = 0;
-                    this.loadOffers();
+                    this.offerService.resetPage();
+                    this.hasMore = true;
+                    this.offers = [];
+                    this.loadMore();
                     this.loadProducts();
                 },
                 error: (e: HttpErrorResponse) => {
@@ -99,7 +108,7 @@ export class OfferManagement implements OnInit{
             this.offerService.deleteOffer(id).subscribe({
                 next: () => {
                     alert('Oferta borrada con exito');
-                    this.loadOffers();
+                    this.offers = this.offers.filter(offer => offer.id !== id);
                     this.loadProducts();
                 },
                 error: (e: HttpErrorResponse) => {
