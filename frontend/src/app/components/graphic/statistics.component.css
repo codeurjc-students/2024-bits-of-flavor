@@ -6,4 +6,71 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+}
+canvas {
+    height:300px !important;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 3px solid black;
+}
+  
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.offer{
+    text-decoration: line-through;
+    color: red;
+    margin-right: 5px;
+}
+
+.active {
+    color: green;
+}
+
+.claimed {
+    color: blue;
+}
+
+.expired {
+    color: red;
+}
+
+.discount {
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    padding-left: 3px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.ajax {
+    border: 3px solid black;
+    border-radius: 10px;
+    color: white;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 20px;
+    cursor: pointer;
+    display: block;
+    background-color: rgb(200, 0, 0);
 }

@@ -26,6 +26,8 @@ import es.codeurjc.bof.service.TicketService;
 import es.codeurjc.bof.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 @RestController
@@ -75,6 +77,21 @@ public class TicketRestController {
         return null;
     }
     
-   
+   @GetMapping("/all")
+   public Page<Ticket> getAllTickets (@RequestParam(defaultValue = "0") int page,
+   @RequestParam(defaultValue = "10") int size){
+        return ticketService.getPageableTickets(PageRequest.of(page, size));
+   }
+
+   @PutMapping("/{id}")
+   public ResponseEntity<Ticket> updateTicket(@PathVariable Long id, @RequestBody Ticket newTicket) {
+        Ticket dbTicket = ticketService.getTicket(id);
+        if (dbTicket == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Ticket updatedTicket = ticketService.updateTicket(id, newTicket);
+        return ResponseEntity.ok(updatedTicket);
+   }
     
 }

@@ -21,7 +21,7 @@
             <input [(ngModel)] = "date" type="date" id="date-input">
         </div>
         <div class="button-container">
-            <button class="cancell-button"> Cancelar </button>
+            <button class="cancell-button" routerLink="/home"> Cancelar </button>
             <button class="accept-button" (click)="processPayment()"> Aceptar </button>
         </div>
         
@@ -30,6 +30,10 @@
     <aside>
         <div>
             <h2> {{product.name}} <span> ({{product.weight}} g) </span></h2>
+            <h2 class = "product-price"> <span *ngIf="product.active" class="discount"> {{offer.discount}} % </span>
+                <span [class.active]="product.active"> {{product.price}} €</span>
+            </h2>
+            <h2 class="product-price"  *ngIf="product.active"> <span> {{offer.newPrice}} €</span></h2>
             <h2> Ingredientes </h2>
             <p> {{product.info}}</p>
             <h2> Informacion nutricional </h2>

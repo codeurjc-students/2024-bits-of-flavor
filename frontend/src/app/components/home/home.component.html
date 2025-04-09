@@ -10,6 +10,7 @@
                         <span [class.active]="offer.active"> {{offer.product.price}} €</span>
                     </h2>
                     <h2 class="product-price"  *ngIf="offer.product.active"> <span> {{offer.newPrice}} €</span></h2>
+                    <button class="add-button" routerLink="/ticket/{{offer.product.id}}"> Añadir </button>
                 </div>
             </li>
         </ul>

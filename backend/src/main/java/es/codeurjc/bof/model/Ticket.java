@@ -24,6 +24,7 @@ public class Ticket {
     private Offer offer;
 
     private LocalDate date;
+    private boolean claimed = false;
 
     public Ticket(){}
     
@@ -75,6 +76,14 @@ public class Ticket {
 
     public boolean isActive(){
         return date.isAfter(LocalDate.now());
+    }
+
+    public boolean isClaimed() {
+        return claimed;
+    }
+
+    public void setClaimed(boolean claimed) {
+        this.claimed = claimed;
     }
     
 }
