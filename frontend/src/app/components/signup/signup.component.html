@@ -9,7 +9,7 @@
         <input [(ngModel)] = "user.email" type="text" placeholder="Email" required id="email-input">
         <input [(ngModel)] = "user.phoneNumber" type="text" placeholder="Numero de Telefono" required id="phoneNumber-input">
         <input [(ngModel)] = "user.encodedPassword" type = "password" placeholder="Contraseña" required id="pasword-input">
-        <input type = "password" placeholder="Confirmar Contraseña" required>
+        <input [(ngModel)] = "confirmPass" type = "password" placeholder="Confirmar Contraseña" required>
         <div class="button-container">
             <button class = "sign-button"(click)="submitSignupForm()"> Registrarse</button>
             <button class = "login-button" routerLink="/login"> Iniciar Sesión </button>

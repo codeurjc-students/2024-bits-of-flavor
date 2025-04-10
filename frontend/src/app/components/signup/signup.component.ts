@@ -13,6 +13,7 @@ export class SignupComponent {
 
     user: User = new User();
     imageSrc: String = "assets/images/default-profile-picture.jpg";
+    confirmPass: String = "";
 
     @ViewChild("file")
     file: any;
@@ -20,6 +21,10 @@ export class SignupComponent {
     constructor(private userService: UserService, private router: Router) { }
 
     public submitSignupForm() {
+        if (this.user.encodedPassword != this.confirmPass) {
+            alert("ERROR: Las contraseñas no coinciden");
+            return;
+        }
         if (this.user.username != "" && this.user.email != '' && this.user.encodedPassword != null) {
             this.userService.addUser(this.user).subscribe({
                 next: (user: User) => {
@@ -28,9 +33,11 @@ export class SignupComponent {
                 },
                 error: (e: HttpErrorResponse) => {
                     console.log(e);
-                    this.router.navigate(["ERROR: NO se ha podido registrar cuenta de usuario"]);
+                    alert("ERROR: NO se ha podido registrar cuenta de usuario");
                 }
             });
+        } else {
+            alert("ERROR: Faltan campos por rellenar");
         }
     }
 

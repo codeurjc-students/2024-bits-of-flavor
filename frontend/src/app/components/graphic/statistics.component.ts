@@ -58,6 +58,9 @@ export class StatisticsComponent implements OnInit {
                                     ticks: {
                                         display: false
                                     }
+                                },
+                                y:{
+                                    ticks: { precision: 0 },
                                 }
                             }
                         }
