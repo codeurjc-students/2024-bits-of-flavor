@@ -120,7 +120,7 @@ public class DatabaseInitializer {
         }
 
         User admin = new User("admin", "admin@gmail.com", "123456789", passwordEncoder.encode("pass"), "USER", "ADMIN");
-        setUserImage(admin, "static/images/avatar1.jpg");
+        setUserImage(admin, "static/images/profile5.jpg");
         userRepository.save(admin);
 
         List<Product> productList = productRepository.findAll();

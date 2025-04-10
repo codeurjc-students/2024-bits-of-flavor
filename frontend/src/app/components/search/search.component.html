@@ -2,7 +2,7 @@
     <main>
         <ul>
             <li *ngFor = "let product of filtredProducts">
-                <img *ngIf="product.active" src="/assets/images/special_offer.png" class="special_offer">
+                <img *ngIf="product.active" src="assets/images/special_offer.png" class="special_offer">
                 <a routerLink ="/product/{{product.id}}"> <img src="/api/product/{{product.id}}/image"> </a>
                 <h2 class="product-name"><a routerLink ="/product/{{product.id}}"> {{product.name}} </a></h2>
                 <div class="button-container">

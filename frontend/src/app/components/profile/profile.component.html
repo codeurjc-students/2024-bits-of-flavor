@@ -8,7 +8,6 @@
             <h2> Nombre de usuario: </h2>
             <div *ngIf="!editAttrUsername" class="attr">
                 <p class="user-info"> {{user.username}} </p>
-                <button (click)="editUsername()"> Editar </button>
             </div>
             <div *ngIf="editAttrUsername" class="attr">
                 <input [(ngModel)]= "user.username" type="text" class="user-info"> 
