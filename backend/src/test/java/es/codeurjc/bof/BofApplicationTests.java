@@ -61,6 +61,7 @@ class BofApplicationTests {
 		driver.findElement(By.id("email-input")).sendKeys("selenium01@test.com");
 		driver.findElement(By.id("phoneNumber-input")).sendKeys("987654321");
 		driver.findElement(By.id("pasword-input")).sendKeys("pepinillo");
+		driver.findElement(By.id("confirmPass-input")).sendKeys("pepinillo");
 		driver.findElement(By.className("sign-button")).click();
 
 		Thread.sleep(1000);
@@ -74,7 +75,7 @@ class BofApplicationTests {
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText("Arroz de magro y setas"))).click();
 		driver.findElement(By.className("add-button")).click();
-		driver.findElement(By.id("date-input")).sendKeys("2024-12-16");
+		driver.findElement(By.id("date-input")).sendKeys("2026-12-16");
 		driver.findElement(By.className("accept-button")).click();
 
 		Thread.sleep(1000);
