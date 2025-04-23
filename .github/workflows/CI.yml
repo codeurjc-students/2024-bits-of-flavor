@@ -56,3 +56,7 @@ jobs:
       run: |
         cd ./backend
         mvn test -Dtest=BofApplicationTests.java#adminTest
+    - name: Run Spring Boot test 3
+      run: |
+        cd ./backend
+        mvn test -Dtest=BofApplicationTests.java#userTest
