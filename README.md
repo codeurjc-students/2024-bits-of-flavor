@@ -1,5 +1,3 @@
-<img width="460" alt="Inicio" src="https://github.com/user-attachments/assets/592268ff-8e8d-42fa-82f9-d4cde4a5e7b1" /># 2024-bits-of-flavor
-
 La App permitirá a los miembros de la comunidad universitaria acceder a una oferta de productos alimenticios. Tiene el objetivo de brindar una alternativa para la limitada oferta de las cafeterías disponibles en la propia universidad.
 
 GitHub Project: [https://github.com/orgs/codeurjc-students/projects/10]
