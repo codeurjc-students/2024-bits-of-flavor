@@ -107,14 +107,14 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                 // PRIVATE ENDPOINTS
-                        .requestMatchers("/new/ticket/**").hasAnyRole("USER","ADMIN")
-                        .requestMatchers("/new/profile").hasAnyRole("USER","ADMIN")
-                        .requestMatchers("/new/newProduct").hasAnyRole("ADMIN")
-                        .requestMatchers("/new/offerManagement").hasAnyRole("ADMIN")
+                        .requestMatchers("/ticket/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/profile").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/newProduct").hasAnyRole("ADMIN")
+                        .requestMatchers("/offerManagement").hasAnyRole("ADMIN")
                         // Public PAGES
                         .anyRequest().permitAll())
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/new/login")
+                        .loginPage("/login")
                         .failureUrl("/error")
                         .defaultSuccessUrl("/")
                         .permitAll())

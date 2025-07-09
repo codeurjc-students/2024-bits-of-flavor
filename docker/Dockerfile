@@ -6,7 +6,7 @@ WORKDIR /frontend
 COPY ../frontend/package*.json ../frontend/angular.json ../frontend/tsconfig*.json ./
 RUN npm install
 COPY ../frontend/src ./src
-RUN npm run build -- --configuration production --base-href="/new/"
+RUN npm run build -- --configuration production --base-href="/"
 
 #################################################
 # Base image for the maven build container
@@ -18,7 +18,7 @@ COPY ../backend/pom.xml .
 #RUN mvn clean verify 
 
 COPY backend/src ./src
-COPY --from=buildFront /frontend/dist/frontend/browser/ ./src/main/resources/static/new
+COPY --from=buildFront /frontend/dist/frontend/browser/ ./src/main/resources/static/
 RUN mvn clean package -DskipTests
 
 #################################################
