@@ -24,7 +24,7 @@ const appRoutes: Routes = [
  { path: 'offerManagement', component: OfferManagement},
  { path: 'statistics', component: StatisticsComponent},
  { path: 'error', component: ErrorComponent},
- { path: '**', redirectTo: 'error', pathMatch: 'full'}
+ { path: '**', redirectTo: 'error'}
 ]
 
 export const routing = RouterModule.forRoot(appRoutes)

@@ -48,15 +48,7 @@ jobs:
         npm run build -- --configuration production --base-href="/new/"
         nohup ng serve --proxy-config proxy.conf.json &
 
-    - name: Run Spring Boot ANONYMOUS Test
+    - name: Run Spring Boot Test
       run: |
         cd ./backend
-        mvn test -Dtest=BofApplicationTests.java#anonymousTest
-    - name: Run Spring Boot ADMIN Test
-      run: |
-        cd ./backend
-        mvn test -Dtest=BofApplicationTests.java#adminTest
-    - name: Run Spring Boot USER Test
-      run: |
-        cd ./backend
-        mvn test -Dtest=BofApplicationTests.java#userTest
+        mvn test -Dtest=BofApplicationTests.java
